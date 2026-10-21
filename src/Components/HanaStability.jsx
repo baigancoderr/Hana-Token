@@ -47,15 +47,15 @@ export default function HanaStability() {
       <div className="mx-auto max-w-[1600px]">
 
         {/* TOP HEADING */}
-<div className="flex items-center gap-5 mb-8 sm:gap-8">
-  <h2 className="text-xl font-bold leading-tight unbounded shrink-0 sm:text-2xl lg:text-[28px]">
+<div className="flex items-center gap-8 mb-8 sm:gap-63">
+  <h2 className="text-xl font-bold leading-tight unbounded shrink-0 sm:text-2xl lg:text-[40px]">
     <span className="text-white">The </span>
     <span className="text-transparent bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text">
       HANA Stability Architecture
     </span>
   </h2>
 
-  <div className="relative hidden h-[2px] w-full max-w-[550px] sm:block">
+  <div className="relative hidden h-[2px] w-full max-w-[350px] sm:block">
     <div
       className="absolute inset-0"
       style={{
@@ -141,7 +141,7 @@ export default function HanaStability() {
           {stats.map((stat) => (
             <article
               key={stat.value}
-              className="px-3 py-3 py-4 min-h-[78px] bg-[#101111] rounded-[11px] border-[#E7AD38]/20 duration-300 border transition hover:border-[#E7AD38]/60 sm:px-4"
+              className="px-3 py-3 py-4 min-h-[100px] bg-[#101111] rounded-[11px] border-[#E7AD38]/20 duration-300 border transition hover:border-[#E7AD38]/60 sm:px-4"
             >
               <h3 className="mb-1 text-xl font-extrabold text-transparent bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text unbounded sm:text-2xl">
                 {stat.value}

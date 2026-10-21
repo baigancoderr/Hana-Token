@@ -10,16 +10,15 @@ const CARDS = [
   { label: "Liquidity Management", l: "71.7%", t: "43.75%" },
   { label: "Reserve Allocation", l: "71.7%", t: "73.75%" },
 ];
-
 const CONNECTORS = [
-  "M462 100 H562 L610 153 H680",
-  "M462 311 H543 L666 280",
-  "M462 503 H618 L712 431",
-  "M1222 107 H1122 L1060 168 H1000",
-  "M1222 328 H1158 L1055 303",
-  "M1222 503 H1115 L1025 432",
-];
+  "M462 100 H590 L650 153 H720",
+  "M462 311 H580 L700 280",
+  "M462 503 H650 L750 431",
 
+  "M1222 107 H1090 L1020 168 H960",
+  "M1222 328 H1120 L1010 303",
+  "M1222 503 H1090 L980 432",
+];
 function FeatureCard({ label, l, t }) {
   return (
     <li
@@ -43,7 +42,15 @@ function FeatureCard({ label, l, t }) {
             WebkitTextFillColor: "transparent",
           }}
         >
-          {label}
+          {label === "Token Burning" ? (
+            <>
+              Token
+              <br />
+              Burning
+            </>
+          ) : (
+            label
+          )}
         </span>
       </div>
     </li>
@@ -81,28 +88,41 @@ export default function TokenEconomics() {
           className="relative flex flex-col items-center gap-6 mx-auto mt-8 mt-10 mt-6 w-full aspect-[1704/600] sm:gap-8 lg:block"
         >
           {/* Desktop connectors */}
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 1704 600"
-            preserveAspectRatio="none"
-            className="z-0 absolute inset-0 hidden h-full w-full pointer-events-none lg:block"
-            fill="none"
-          >
-            {CONNECTORS.map((path) => (
-              <path
-                key={path}
-                d={path}
-                stroke="#FFC52E"
-                strokeWidth="2"
-                strokeLinejoin="round"
-                vectorEffect="non-scaling-stroke"
-              />
-            ))}
-          </svg>
+<svg
+  aria-hidden="true"
+  viewBox="0 0 1704 600"
+  preserveAspectRatio="none"
+  className="z-0 absolute inset-0 hidden h-full w-full pointer-events-none lg:block"
+  fill="none"
+>
+  <defs>
+    <linearGradient
+      id="connectorGradient"
+      x1="0%"
+      y1="0%"
+      x2="100%"
+      y2="0%"
+    >
+      <stop offset="0%" stopColor="#F8E096" />
+      <stop offset="100%" stopColor="#FFB01B" />
+    </linearGradient>
+  </defs>
+
+  {CONNECTORS.map((path) => (
+    <path
+      key={path}
+      d={path}
+      stroke="url(#connectorGradient)"
+      strokeWidth="2"
+      strokeLinejoin="round"
+      vectorEffect="non-scaling-stroke"
+    />
+  ))}
+</svg>
 
           {/* Central coin */}
           <div
-            className="z-10 relative left-[37.6%] top-[9.7%] flex items-center justify-center w-[55vw] max-w-[240px] h-[75%] w-[24.6%] max-w-none aspect-square shrink-0 aspect-auto sm:max-w-[280px] lg:absolute"
+            className="z-10 relative left-[37.6%] top-[9.7%] flex items-center justify-center w-[55vw] max-w-[240px] h-[75%] w-[24.6%] max-w-none aspect-square shrink-0 aspect-auto sm:max-w-[375px] lg:absolute"
           >
             {/* Golden glow */}
             <div
@@ -118,9 +138,7 @@ export default function TokenEconomics() {
           </div>
 
           {/* Feature cards */}
-          <ul
-            className="z-20 relative grid grid-cols-1 gap-4 w-full max-w-[720px] min-[480px]:grid-cols-2 lg:contents"
-          >
+          <ul className="z-20 relative grid grid-cols-1 gap-4 w-full max-w-[720px] min-[480px]:grid-cols-2 lg:contents">
             {CARDS.map((card) => (
               <FeatureCard key={card.label} {...card} />
             ))}
@@ -128,9 +146,7 @@ export default function TokenEconomics() {
         </div>
 
         {/* Description */}
-        <p
-          className="mx-auto mt-8 max-w-[1050px] text-center text-sm leading-relaxed text-white/90 text-base text-lg sm:mt-10 lg:mt-8 xl:text-xl"
-        >
+        <p className="mx-auto mt-8 max-w-[1050px] text-center text-sm leading-relaxed text-white/90 text-base sm:mt-10 lg:mt-8 xl:text-xl">
           Built on IT and blockchain expertise. Detailed supply,
           allocation percentages and transaction rules will be defined
           in the official tokenomics documentation.

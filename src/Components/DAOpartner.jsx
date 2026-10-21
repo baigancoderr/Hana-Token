@@ -85,14 +85,22 @@ function Hex({ glow = false, children, className = "" }) {
 function OptionCard({ title, children, className = "", glow = false }) {
   return (
     <article
-      className={`relative min-w-0 rounded-2xl border bg-[#141414] p-5 pb-8 sm:p-6 sm:pb-10 ${
+      className={`relative min-w-0 rounded-2xl border-transparent bg-[#141414] p-5 pb-8 sm:p-6 sm:pb-10 ${
         glow
-          ? "border-[#FFC542]/70 shadow-[0_0_18px_rgba(255,197,66,0.18)]"
-          : "border-[#FFC542]/30 shadow-[0_4px_16px_rgba(255,197,66,0.12)]"
+          ? "shadow-[0px_4px_4px_0px_#E7AD38]"
+          : "shadow-[0px_4px_4px_0px_#E7AD38]"
       } ${className}`}
+      style={{
+        borderImage:
+          "linear-gradient(90deg, #E7AD38 0%, #FFD98C 100%) 1",
+      }}
     >
-      <h3 className="font-['Unbounded'] text-lg font-semibold text-[#FFD166] sm:text-xl">{title}</h3>
+      <h3 className="font-['Unbounded'] text-lg font-semibold text-transparent bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text sm:text-xl">
+  {title}
+</h3>
+
       <div className="mt-4 pl-1">{children}</div>
+
       <Corners />
     </article>
   );
@@ -101,9 +109,9 @@ function OptionCard({ title, children, className = "", glow = false }) {
 function EconomicsRow({ label, text }) {
   return (
     <div className="grid grid-cols-[5.5rem_1fr] items-center gap-3 gap-4 px-4 py-4 px-6 py-5 bg-[#111111] rounded-lg sm:grid-cols-[7rem_1fr]">
-      <dt className="break-words font-['Unbounded'] text-sm font-semibold leading-tight text-[#FFC542]">
-        {label}
-      </dt>
+      <dt className="break-words font-['Unbounded'] text-sm font-semibold leading-tight text-transparent bg-[linear-gradient(90deg,#E7AD38_0%,#FFD98C_100%)] bg-clip-text">
+  {label}
+</dt>
       <dd className="min-w-0 break-words text-sm leading-relaxed text-white">{text}</dd>
     </div>
   );
@@ -113,9 +121,9 @@ function IncentiveTile({ value, label, glow }) {
   return (
     <Hex glow={glow}>
       <div className="min-w-0">
-        <p className="break-words font-['Unbounded'] text-base font-semibold text-[#FFC542] sm:text-lg">
-          {value}
-        </p>
+       <p className="break-words font-['Unbounded'] text-base font-semibold text-transparent bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text sm:text-lg">
+  {value}
+</p>
         <p className="mt-1 break-words text-xs font-medium text-white sm:text-[13px]">{label}</p>
       </div>
     </Hex>
@@ -135,7 +143,10 @@ export default function DaoEconomicsSection() {
         <div className="grid items-start gap-10 gap-12 lg:grid-cols-2">
           <div className="min-w-0">
             <Heading>
-              <span className="text-white">DAO Partner</span> <span className="text-[#FFC542]">Program</span>
+             <span className="text-white">DAO Partner</span>{" "}
+<span className="text-transparent bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text">
+  Program
+</span>
             </Heading>
 
             <div className="relative mt-8 px-5 py-6 max-w-[520px] sm:px-6">
@@ -166,9 +177,9 @@ export default function DaoEconomicsSection() {
           <div className="grid gap-5 gap-6 min-w-0 sm:grid-cols-2 lg:pt-4">
             <OptionCard title="Option 1">
               <p className="break-words text-xs text-[#A9A0B8] sm:text-sm">$5,000 ID × 300 members</p>
-              <p className="mt-2 font-['Unbounded'] text-base font-semibold text-[#FFD166]">
-                $1.5M capacity
-              </p>
+              <p className="mt-2 font-['Unbounded'] text-base font-semibold text-transparent bg-[linear-gradient(90deg,#8F5B12_0%,#DFA52E_25%,#FFF1A8_48%,#E7AD38_68%,#9D6415_100%)] bg-clip-text">
+  $1.5M capacity
+</p>
             </OptionCard>
             <OptionCard title="Option 2" glow className="sm:mt-10">
               <p className="break-words text-sm leading-relaxed text-white sm:text-base">
@@ -182,11 +193,14 @@ export default function DaoEconomicsSection() {
         <div className="grid items-start gap-12 gap-10 lg:grid-cols-2">
           <section aria-labelledby="economics-heading" className="min-w-0 lg:pt-6">
             <Heading className="">
-              <span id="economics-heading">
-                <span className="text-white">Token</span> <span className="text-[#FFC542]">Economics</span>
-                <br />
-                <span className="text-[#FFC542]">&amp; Stabilization</span>
-              </span>
+              <span className="text-white">Token</span>{" "}
+<span className="text-transparent bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text">
+  Economics
+</span>
+<br />
+<span className="text-transparent bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text">
+  &amp; Stabilization
+</span>
             </Heading>
 
             <dl className="mt-8 space-y-4 space-y-5 sm:mt-10">
@@ -196,7 +210,9 @@ export default function DaoEconomicsSection() {
             </dl>
 
             <div className="grid grid-cols-[5.5rem_1fr] items-center gap-3 gap-4 mt-5 px-4 py-4 px-6 bg-black rounded-lg border-[#FFC542]/60 border sm:grid-cols-[7rem_1fr]">
-              <p className="font-['Unbounded'] text-sm font-semibold text-[#FFC542]">Note</p>
+              <p className="font-['Unbounded'] text-sm font-semibold text-transparent bg-[linear-gradient(90deg,#E7AD38_0%,#FFD98C_100%)] bg-clip-text">
+  Note
+</p>
               <p className="min-w-0 break-words text-sm leading-relaxed text-white">
                 Direct PancakeSwap purchases are not intended under the proposed package model.
               </p>
@@ -209,10 +225,12 @@ export default function DaoEconomicsSection() {
           >
             <Heading>
               <span id="rank-heading">
-                <span className="text-white">Rank</span>
-                <br />
-                <span className="text-[#FFC542]">Incentives</span>
-              </span>
+  <span className="text-white">Rank</span>
+  <br />
+  <span className="text-transparent bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text">
+    Incentives
+  </span>
+</span>
             </Heading>
 
             <div className="grid grid-cols-1 gap-3 mt-8 min-[360px]:grid-cols-2 sm:gap-4">
@@ -224,9 +242,9 @@ export default function DaoEconomicsSection() {
             <dl className="mt-8 text-sm space-y-4 sm:mt-10">
               {RANK_NOTES.map(({ label, text }) => (
                 <div key={label} className="grid gap-1 gap-4 sm:grid-cols-[9rem_1fr]">
-                  <dt className="font-['Unbounded'] text-xs font-semibold text-[#FFC542] sm:pt-0.5">
-                    {label}
-                  </dt>
+                 <dt className="font-['Unbounded'] text-xs font-semibold text-transparent bg-[linear-gradient(90deg,#E7AD38_0%,#FFD98C_100%)] bg-clip-text sm:pt-0.5">
+  {label}
+</dt>
                   <dd className="min-w-0 break-words leading-relaxed text-white/90">{text}</dd>
                 </div>
               ))}
