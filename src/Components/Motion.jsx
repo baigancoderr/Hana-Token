@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 
 const itemVariants = {
@@ -21,8 +22,15 @@ const groupVariants = {
 
 const viewport = { once: true, amount: 0.15 };
 
+function useMotionElement(as) {
+  return useMemo(
+    () => (typeof as === "string" ? motion[as] || motion.div : motion.create(as)),
+    [as],
+  );
+}
+
 export function Reveal({ as = "div", children, ...props }) {
-  const Element = motion[as] || motion.div;
+  const Element = useMotionElement(as);
 
   return (
     <Element
@@ -38,7 +46,7 @@ export function Reveal({ as = "div", children, ...props }) {
 }
 
 export function StaggerGroup({ as = "div", children, ...props }) {
-  const Element = motion[as] || motion.div;
+  const Element = useMotionElement(as);
 
   return (
     <Element
@@ -54,7 +62,7 @@ export function StaggerGroup({ as = "div", children, ...props }) {
 }
 
 export function StaggerItem({ as = "div", children, ...props }) {
-  const Element = motion[as] || motion.div;
+  const Element = useMotionElement(as);
 
   return (
     <Element variants={itemVariants} {...props}>

@@ -1,6 +1,7 @@
 
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroImg from "../assets/heroImg.gif";
 import heroBackground from "../assets/herobg.png";
 import { Reveal, StaggerGroup, StaggerItem } from "./Motion";
@@ -118,8 +119,8 @@ const Hero = () => {
           {/* Buttons */}
           <StaggerGroup className="mt-10 flex flex-wrap items-center gap-4">
             <StaggerItem
-              as="a"
-              href="#join"
+              as={Link}
+              to="/register"
               className="inline-flex min-h-[50px] items-center justify-center gap-3 rounded-[4px] bg-gradient-to-r from-[#FFE28A] to-[#FFB51D] px-[18px] py-2 text-[18px] font-semibold text-[#111111] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_22px_rgba(255,190,45,0.25)]"
             >
               Join Now

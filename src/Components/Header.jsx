@@ -1,7 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { useAppKit, useAppKitAccount, useAppKitState } from "@reown/appkit/react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { Reveal, StaggerGroup, StaggerItem } from "./Motion";
 
@@ -15,57 +14,6 @@ const navLinks = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [loginPending, setLoginPending] = useState(false);
-  const [loginError, setLoginError] = useState("");
-  const modalWasOpen = useRef(false);
-  const { open } = useAppKit();
-  const { isConnected } = useAppKitAccount({ namespace: "eip155" });
-  const { open: modalOpen } = useAppKitState();
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const openDashboard = useCallback(
-    () => navigate({ pathname: "/dashboard", search: location.search }),
-    [location.search, navigate],
-  );
-
-  useEffect(() => {
-    if (loginPending && isConnected) {
-      setLoginPending(false);
-      openDashboard();
-      return;
-    }
-
-    if (!loginPending) {
-      modalWasOpen.current = false;
-      return;
-    }
-
-    if (modalOpen) {
-      modalWasOpen.current = true;
-    } else if (modalWasOpen.current) {
-      modalWasOpen.current = false;
-      setLoginPending(false);
-    }
-  }, [isConnected, loginPending, modalOpen, openDashboard]);
-
-  const handleLogin = async () => {
-    setLoginError("");
-    if (isConnected) {
-      openDashboard();
-      return;
-    }
-
-    setLoginPending(true);
-    try {
-      await open({ view: "Connect", namespace: "eip155" });
-    } catch (error) {
-      setLoginPending(false);
-      setLoginError(
-        error instanceof Error ? error.message : "Could not open wallet connection.",
-      );
-    }
-  };
 
   return (
     <Reveal as="header" className="header-gradient-border mx-auto max-w-[1600px] font-chakra-petch bg-[#000611] text-white">
@@ -96,17 +44,16 @@ export default function Navbar() {
         {/* Desktop Actions */}
         <StaggerGroup className="hidden items-center gap-8 min-[481px]:flex xl:gap-9">
           <StaggerItem
-            as="button"
-            type="button"
-            onClick={handleLogin}
+            as={Link}
+            to="/login"
             className="text-[16px] text-[#e0e3ec] transition-colors hover:text-[#ffbd32]"
           >
-            {loginPending ? "Connecting..." : "Login"}
+            Login
           </StaggerItem>
 
           <StaggerItem
-            as="a"
-            href="#join"
+            as={Link}
+            to="/register"
             className="group flex h-[46px] xl:h-[51px] min-w-[60px] xl:min-w-[100px] items-center justify-center gap-7 rounded-[9px] rounded-br-[9px] bg-gradient-to-r from-[#ffe69c] via-[#ffca48] to-[#ffb51c] px-7 text-[17px] font-semibold text-black transition-all duration-300 hover:brightness-105"
           >
             <span>Join Now</span>
@@ -148,20 +95,17 @@ export default function Navbar() {
 
               <div className="mt-3 hidden items-center gap-4 border-t border-white/10 pt-4 max-[480px]:flex">
                 <StaggerItem
-                  as="button"
-                  type="button"
-                  onClick={() => {
-                    setMenuOpen(false);
-                    handleLogin();
-                  }}
+                  as={Link}
+                  to="/login"
+                  onClick={() => setMenuOpen(false)}
                   className="flex-1 rounded-lg border border-white/15 py-3 text-center text-sm hover:border-[#ffbd32]"
                 >
-                  {loginPending ? "Connecting..." : "Login"}
+                  Login
                 </StaggerItem>
 
                 <StaggerItem
-                  as="a"
-                  href="#join"
+                  as={Link}
+                  to="/register"
                   onClick={() => setMenuOpen(false)}
                   className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#ffe69c] to-[#ffb51c] py-3 text-sm font-semibold text-black"
                 >
@@ -171,14 +115,6 @@ export default function Navbar() {
               </div>
             </div>
           </StaggerGroup>
-        )}
-        {loginError && (
-          <p
-            className="absolute right-4 top-full z-[60] mt-2 max-w-[min(90vw,400px)] rounded-lg border border-red-400/30 bg-black px-3 py-2 text-sm text-red-300"
-            role="alert"
-          >
-            {loginError}
-          </p>
         )}
       </nav>
     </Reveal>
