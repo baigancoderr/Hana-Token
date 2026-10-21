@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
 import { useDisconnect } from "wagmi";
 import { isAddress } from "viem";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const referralStorageKey = (address) =>
   `hana-referral-${address.toLowerCase()}`;
@@ -12,6 +12,8 @@ export default function DashboardAccessGate({ children }) {
   const { open } = useAppKit();
   const { disconnectAsync } = useDisconnect();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const queryReferral = searchParams.get("ref") ?? "";
   const [referralAddress, setReferralAddress] = useState("");
   const [authorizedWallet, setAuthorizedWallet] = useState("");
   const [inputAddress, setInputAddress] = useState("");
@@ -29,9 +31,9 @@ export default function DashboardAccessGate({ children }) {
     const savedReferral = localStorage.getItem(referralStorageKey(address)) ?? "";
     setReferralAddress(savedReferral);
     setAuthorizedWallet(address.toLowerCase());
-    setInputAddress("");
+    setInputAddress(queryReferral);
     setError("");
-  }, [address, isConnected]);
+  }, [address, isConnected, queryReferral]);
 
   const handleSubmit = (event) => {
     event.preventDefault();

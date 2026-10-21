@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { useAppKitAccount } from "@reown/appkit/react";
 import {
   Wallet,
   TrendingUp,
@@ -9,6 +11,8 @@ import {
   Clock,
   Shield,
   Zap,
+  Copy,
+  Check,
 } from "lucide-react";
 import {
   AreaChart,
@@ -69,8 +73,46 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export default function Overview() {
+  const [toast, setToast] = useState("");
+  const { address } = useAppKitAccount({ namespace: "eip155" });
+  const referralLink = address
+    ? `${window.location.origin}/?ref=${encodeURIComponent(address)}`
+    : "";
+
+  useEffect(() => {
+    if (!toast) return undefined;
+
+    const timeoutId = window.setTimeout(() => setToast(""), 2500);
+    return () => window.clearTimeout(timeoutId);
+  }, [toast]);
+
+  const copyReferralLink = async () => {
+    if (!referralLink) {
+      setToast("Connect a wallet to create your referral link");
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(referralLink);
+      setToast("Referral link copied");
+    } catch (error) {
+      console.error("Unable to copy referral link:", error);
+      setToast("Could not copy referral link");
+    }
+  };
+
   return (
     <div className="space-y-6">
+      {toast && (
+        <div
+          className="fixed right-5 top-5 z-[120] flex items-center gap-2 rounded-lg border border-[#FFB51D]/40 bg-[#15120A] px-4 py-3 text-sm font-semibold text-[#F8E096] shadow-[0_8px_30px_rgba(0,0,0,0.5),0_0_18px_rgba(255,181,29,0.12)]"
+          role="status"
+        >
+          {toast === "Referral link copied" && <Check size={16} />}
+          {toast}
+        </div>
+      )}
+
       {/* Welcome Banner */}
       <div className="relative overflow-hidden rounded-xl border border-[#FFB51D]/20 bg-gradient-to-r from-[#111111] via-[#111111] to-[#0A0A0A] p-5 sm:p-6">
         <div className="pointer-events-none absolute right-0 top-0 h-64 w-64 rounded-full bg-[#FFB51D]/5 blur-3xl" />
@@ -87,6 +129,36 @@ export default function Overview() {
             <p className="mt-1 text-[13px] text-[#A3A3A3]">
               ID: #H10042 · Package: $1,000 · Joined 14 days ago
             </p>
+            <div className="mt-3 space-y-2">
+              {/* <div className="flex flex-wrap items-center gap-2">
+                <span className="text-[13px] text-[#A3A3A3]">Your wallet:</span>
+                <code className="break-all rounded-md border border-[#FFB51D]/20 bg-black/40 px-2.5 py-1 font-mono text-xs font-semibold text-[#F8E096]">
+                  {address || "Connect wallet to view address"}
+                </code>
+              </div> */}
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-[13px] text-[#A3A3A3]">Referral link:</span>
+                <code className="min-w-0 break-all rounded-md border border-[#FFB51D]/10 bg-black/40 px-2.5 py-1 font-mono text-xs text-[#F8E096]">
+                  {referralLink || "Connect wallet to create a referral link"}
+                </code>
+              <button
+                className={`inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-xs font-semibold transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-[#FFB51D]/10 active:scale-95 ${
+                  toast === "Referral link copied"
+                    ? "border-[#FFB51D]/60 bg-[#FFB51D]/10 text-[#F8E096] shadow-[0_0_12px_rgba(255,181,29,0.2)]"
+                    : "border-[#FFB51D]/30 text-[#FFB51D]"
+                }`}
+                onClick={copyReferralLink}
+                type="button"
+              >
+                {toast === "Referral link copied" ? (
+                  <Check className="animate-[bounce_0.5s_ease-out]" size={13} />
+                ) : (
+                  <Copy size={13} />
+                )}
+                {toast === "Referral link copied" ? "Copied!" : "Copy link"}
+              </button>
+              </div>
+            </div>
           </div>
           <div className="flex flex-col items-start gap-2 sm:items-end">
             <div className="flex items-center gap-2 rounded-lg border border-[#222] bg-[#0A0A0A] px-4 py-2">

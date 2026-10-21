@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useAppKit, useAppKitAccount, useAppKitState } from "@reown/appkit/react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { Reveal, StaggerGroup, StaggerItem } from "./Motion";
 
@@ -22,11 +22,17 @@ export default function Navbar() {
   const { isConnected } = useAppKitAccount({ namespace: "eip155" });
   const { open: modalOpen } = useAppKitState();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const openDashboard = useCallback(
+    () => navigate({ pathname: "/dashboard", search: location.search }),
+    [location.search, navigate],
+  );
 
   useEffect(() => {
     if (loginPending && isConnected) {
       setLoginPending(false);
-      navigate("/dashboard");
+      openDashboard();
       return;
     }
 
@@ -41,12 +47,12 @@ export default function Navbar() {
       modalWasOpen.current = false;
       setLoginPending(false);
     }
-  }, [isConnected, loginPending, modalOpen, navigate]);
+  }, [isConnected, loginPending, modalOpen, openDashboard]);
 
   const handleLogin = async () => {
     setLoginError("");
     if (isConnected) {
-      navigate("/dashboard");
+      openDashboard();
       return;
     }
 
