@@ -1,6 +1,6 @@
 
 import React from "react";
-import dseImage from "../assets/dse/DSE.png";
+import dseImage from "../assets/DSE/DSE.png";
 
 const steps = [
   {
