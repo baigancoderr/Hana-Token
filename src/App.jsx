@@ -7,7 +7,9 @@ import Headers from './Components/Header'
 import Footer from './Components/Footer'
 import Hero from './Components/Hero'
 import AboutUs from './Components/AboutUs'
+import DAOpartner from './Components/DAOpartner'
 import Ecosystem from './Components/Ecosystem'
+import Tokonomics from './Components/Tokenomics'
 import FAQ from './Components/FAQ'
 import Token from './Components/Token'
 import Roadmap from './Components/Roadmap'
@@ -44,11 +46,14 @@ function LandingPage() {
         <Hero />
         <HanaProtocol />
         <AboutUs />
+        
         <VisionMission />
         <DSESection/>
         <HanaStability/>
+        <DAOpartner />
         <Ecosystem />
         <Token />
+        <Tokonomics />
         <Roadmap />
         <Team />
         <FAQ />
