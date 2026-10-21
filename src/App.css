@@ -1,0 +1,83 @@
+.gold-gradient-text {
+  background: linear-gradient(90deg, #f8e096 0%, #ffb01b 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-border {
+  border-image: linear-gradient(90deg, #f8e096 0%, #ffb01b 100%) 1;
+}
+
+.gold-gradient-top-border {
+  border-top: 2px solid transparent;
+  border-image: linear-gradient(
+    90deg,
+    #8f5b12 0%,
+    #dfa52e 25%,
+    #fff1a8 48%,
+    #e7ad38 68%,
+    #9d6415 100%
+  ) 1;
+}
+
+.gold-gradient-background {
+  background: linear-gradient(90deg, #f8e096 0%, #ffb01b 100%);
+}
+
+@property --vision-border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.vision-card-glow {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#171717, #171717) padding-box,
+    conic-gradient(
+        from var(--vision-border-angle),
+        #302711 0deg,
+        #e7ad38 70deg,
+        #fff1a8 100deg,
+        #e7ad38 140deg,
+        #302711 200deg 360deg
+      )
+      border-box;
+  animation:
+    vision-border-spin 5s linear infinite,
+    vision-shadow-pulse 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes vision-border-spin {
+  to {
+    --vision-border-angle: 360deg;
+  }
+}
+
+@keyframes vision-shadow-pulse {
+  from {
+    box-shadow: 0 2px 8px rgb(231 173 56 / 20%);
+  }
+
+  to {
+    box-shadow: 0 4px 16px rgb(231 173 56 / 50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vision-card-glow {
+    animation: none;
+    box-shadow: 0 4px 10px rgb(231 173 56 / 30%);
+  }
+}
+
+.header-gradient-border {
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(
+      90deg,
+      #00143d 0%,
+      #005bff 50%,
+      #00d4ff 100%
+    )
+    1;
+}
