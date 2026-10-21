@@ -66,13 +66,13 @@ export default function Topbar({
           />
         </div>
 
-        <div className="hidden items-center gap-1.5 rounded-lg border border-[#222] bg-[#111] px-3 py-1.5 sm:flex">
+        {/* <div className="hidden items-center gap-1.5 rounded-lg border border-[#222] bg-[#111] px-3 py-1.5 sm:flex">
           <TrendingUp size={13} className="text-green-400" />
           <span className="font-chakra-petch text-[12px] font-semibold text-green-400">
             $0.0845
           </span>
           <span className="font-chakra-petch text-[11px] text-[#737373]">HANA</span>
-        </div>
+        </div> */}
 
         <button className="relative rounded-lg border border-[#222] bg-[#111] p-2 text-[#A3A3A3] hover:text-[#FFB51D] transition-colors">
           <Bell size={17} />

@@ -1,5 +1,6 @@
 
 import { ArrowUpRight, MessageCircle, Send } from "lucide-react";
+import { Link } from "react-router-dom";
 import connectImage from "../assets/join/connect.png";
 import exploreImage from "../assets/join/explore.png";
 import growImage from "../assets/join/grow.png";
@@ -39,21 +40,21 @@ export default function JoinUs() {
 
           {/* Buttons and Social Icons */}
           <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-4">
-            <a
-              href="#login"
+            <Link
+              to="/login"
               className="group chakra-petch inline-flex items-center gap-3 px-3 py-3 text-[15px] font-semibold transition hover:text-amber-400"
             >
               Login
               <ArrowUpRight className="text-base  chakra-petch text-amber-400 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
-            </a>
+            </Link>
 
-            <a
-              href="#join"
+            <Link
+              to="/register"
               className="inline-flex min-h-10 items-center chakra-petch justify-center gap-3 rounded-md bg-gradient-to-r from-yellow-200 to-amber-400 px-5 py-3 text-[16px] font-bold text-black transition hover:brightness-110"
             >
               Join Now
               <ArrowUpRight className="text-base" />
-            </a>
+            </Link>
 
             {/* Social Links */}
             <div className="flex items-center gap-2">

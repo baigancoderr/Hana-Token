@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useDisconnect } from "wagmi";
 import Sidebar from "./Sidebar";
+import SideRays from "./SideRays";
 import Topbar from "./Topbar";
 
 const pageTitles = {
@@ -78,10 +79,35 @@ export default function DashboardLayout() {
 
         <main
           ref={mainRef}
-          className="dashboard-scroll flex-1 overflow-y-auto bg-black p-4 sm:p-6"
+          className="dashboard-scroll relative isolate flex-1 overflow-y-auto bg-black p-4 sm:p-6"
         >
-          <div className="pointer-events-none fixed left-[20%] top-[20%] h-[400px] w-[400px] rounded-full bg-[#FFB51D]/6 blur-[100px]" />
-          <div className="pointer-events-none fixed right-[10%] bottom-[20%] h-[300px] w-[300px] rounded-full bg-white/[0.03] blur-[100px]" />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none fixed bottom-0 left-0 right-0 top-[70px] z-0 overflow-hidden sm:left-[35%]"
+          >
+            <SideRays
+              rayColor1="#FFC46B"
+              rayColor2="#96c8ff"
+              origin="top-right"
+              speed={2.5}
+              intensity={2}
+              spread={3}
+              density={5}
+              followMouse
+              blend={0.6}
+              sharpness={0.5}
+              tilt={0}
+              falloff={1.6}
+              glow={1}
+              saturation={1}
+              dust={0}
+              mouseInfluence={0.5}
+              intro
+              lightMode={false}
+              opacity={0.62}
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/30" />
+          </div>
 
           <div className="relative z-10">
             <Outlet />

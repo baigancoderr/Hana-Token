@@ -1,0 +1,593 @@
+.hana-auth {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  color: #fff;
+  background: #05080e;
+  font-family: "Chakra Petch", sans-serif;
+}
+
+.hana-auth__backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgb(3 7 14 / 30%) 0%, #05080e 100%),
+    linear-gradient(0deg, #05080e 0%, transparent 45%),
+    url("../assets/herobg.png") center / cover;
+  opacity: 0.36;
+  pointer-events: none;
+}
+
+.hana-auth__layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(400px, 0.9fr);
+  max-width: 1400px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 42px clamp(24px, 6vw, 90px);
+  gap: clamp(48px, 8vw, 130px);
+}
+
+.hana-auth__story,
+.hana-auth__panel {
+  position: relative;
+  z-index: 1;
+}
+
+.hana-auth__story {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(100vh - 84px);
+  padding: 4px 0;
+}
+
+.hana-auth__logo img {
+  display: block;
+  width: min(250px, 46vw);
+  height: 72px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.hana-auth__story-copy {
+  max-width: 590px;
+  margin-top: auto;
+  padding: 55px 0 30px;
+}
+
+.hana-auth__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 13px;
+  border: 1px solid rgb(255 196 65 / 27%);
+  border-radius: 999px;
+  background: rgb(255 186 41 / 6%);
+  color: #f8dda0;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hana-auth__eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ffc64d;
+  box-shadow: 0 0 12px #ffc64d;
+}
+
+.hana-auth__story h1 {
+  max-width: 580px;
+  margin: 25px 0 17px;
+  color: #f7f8fb;
+  font-family: "Unbounded", sans-serif;
+  font-size: clamp(38px, 5.1vw, 68px);
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  line-height: 1.12;
+}
+
+.hana-auth__story h1 span {
+  color: #ffc342;
+  text-shadow: 0 0 28px rgb(255 181 29 / 25%);
+}
+
+.hana-auth__story-copy > p {
+  max-width: 480px;
+  margin: 0;
+  color: #a9b0bd;
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.hana-auth__trust {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 470px;
+  margin-top: 35px;
+  padding: 16px;
+  border: 1px solid rgb(255 255 255 / 9%);
+  border-radius: 15px;
+  background: rgb(255 255 255 / 3%);
+  backdrop-filter: blur(12px);
+}
+
+.hana-auth__trust-icon,
+.hana-auth__heading-icon {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  color: #ffd26e;
+  background: rgb(255 190 45 / 11%);
+}
+
+.hana-auth__trust-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+}
+
+.hana-auth__trust strong,
+.hana-auth__trust span {
+  display: block;
+}
+
+.hana-auth__trust strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.hana-auth__trust span {
+  margin-top: 3px;
+  color: #9299a7;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.hana-auth__panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - 84px);
+  padding: 30px clamp(23px, 3.6vw, 52px);
+  border: 1px solid rgb(255 255 255 / 10%);
+  border-radius: 26px;
+  background: linear-gradient(145deg, rgb(18 23 32 / 94%), rgb(8 11 17 / 96%));
+  box-shadow: 0 30px 100px rgb(0 0 0 / 38%), inset 0 1px rgb(255 255 255 / 5%);
+  backdrop-filter: blur(20px);
+}
+
+.hana-auth__back {
+  position: absolute;
+  top: 27px;
+  left: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #9fa6b2;
+  font-size: 13px;
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.hana-auth__back:hover {
+  color: #ffd26e;
+}
+
+.hana-auth__form-wrap {
+  width: 100%;
+  max-width: 440px;
+  margin: 24px auto 0;
+}
+
+.hana-auth__tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 5px;
+  border: 1px solid rgb(255 255 255 / 8%);
+  border-radius: 12px;
+  background: rgb(0 0 0 / 22%);
+}
+
+.hana-auth__tabs a {
+  padding: 11px 8px;
+  border-radius: 8px;
+  color: #9299a7;
+  font-size: 13px;
+  text-align: center;
+  text-decoration: none;
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.hana-auth__tabs a.is-active {
+  background: linear-gradient(100deg, #ffe28a, #ffb51d);
+  color: #15110a;
+  font-weight: 700;
+  box-shadow: 0 5px 15px rgb(255 181 29 / 15%);
+}
+
+.hana-auth__heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 30px 0 23px;
+}
+
+.hana-auth__heading-icon {
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgb(255 190 45 / 22%);
+  border-radius: 13px;
+}
+
+.hana-auth__heading h2 {
+  margin: 0;
+  color: #f4f5f7;
+  font-family: "Unbounded", sans-serif;
+  font-size: clamp(16px, 1.5vw, 20px);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.hana-auth__heading p {
+  margin: 4px 0 0;
+  color: #9299a7;
+  font-size: 13px;
+}
+
+.hana-auth__steps {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 22px;
+  color: #777f8e;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.hana-auth__steps span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.hana-auth__steps span.is-complete,
+.hana-auth__steps span.is-current {
+  color: #ffd26e;
+}
+
+.hana-auth__steps i {
+  flex: 1;
+  height: 1px;
+  background: rgb(255 255 255 / 13%);
+}
+
+.hana-auth__wallet {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid rgb(255 255 255 / 10%);
+  border-radius: 14px;
+  background: linear-gradient(115deg, rgb(255 255 255 / 5%), rgb(255 255 255 / 2%));
+  box-shadow: inset 0 1px rgb(255 255 255 / 3%);
+}
+
+.hana-auth__wallet-mark {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 10px;
+  background: rgb(48 127 235 / 13%);
+  color: #78aeff;
+}
+
+.hana-auth__wallet strong,
+.hana-auth__wallet span:not(.hana-auth__wallet-mark):not(.hana-auth__status) {
+  display: block;
+}
+
+.hana-auth__wallet-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.hana-auth__wallet strong {
+  color: #e8eaf0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.hana-auth__wallet-info > span {
+  margin-top: 5px;
+  color: #8991a0;
+  font-size: 11px;
+}
+
+.hana-auth__address-row {
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  align-items: center;
+  gap: 6px;
+  margin-top: 5px;
+  padding: 3px 4px 3px 8px;
+  border: 1px solid rgb(255 255 255 / 8%);
+  border-radius: 7px;
+  background: rgb(0 0 0 / 24%);
+}
+
+.hana-auth__wallet .hana-auth__address {
+  overflow: hidden;
+  color: #c8d3e4;
+  font-family: monospace;
+  font-size: 11px;
+  letter-spacing: 0.015em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hana-auth__copy {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #8e9aab;
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.hana-auth__copy:hover {
+  background: rgb(255 190 45 / 12%);
+  color: #ffd26e;
+}
+
+.hana-auth__copy:focus-visible {
+  outline: 2px solid #ffd26e;
+  outline-offset: 2px;
+}
+
+.hana-auth__copy.is-copied {
+  color: #49d89a;
+}
+
+.hana-auth__status {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  margin-left: 4px;
+  border-radius: 50%;
+  background: #626b78;
+}
+
+.hana-auth__status.is-connected {
+  background: #49d89a;
+  box-shadow: 0 0 10px rgb(73 216 154 / 70%);
+}
+
+.hana-auth__form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 23px;
+}
+
+.hana-auth__form label {
+  margin-bottom: 9px;
+  color: #d9dde5;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.hana-auth__form input {
+  width: 100%;
+  min-height: 49px;
+  padding: 0 14px;
+  border: 1px solid rgb(255 255 255 / 13%);
+  border-radius: 10px;
+  outline: none;
+  background: rgb(0 0 0 / 27%);
+  color: #f5f6f8;
+  font-family: monospace;
+  font-size: 13px;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.hana-auth__form input::placeholder {
+  color: #626a77;
+}
+
+.hana-auth__form input:focus {
+  border-color: #dca637;
+  box-shadow: 0 0 0 3px rgb(220 166 55 / 12%);
+}
+
+.hana-auth__hint {
+  margin-top: 8px;
+  color: #7f8794;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.hana-auth__description {
+  margin: 0 0 4px;
+  color: #a0a7b4;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.hana-auth__error {
+  margin: 11px 0 0;
+  color: #ff9292;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.hana-auth__submit {
+  display: flex;
+  width: 100%;
+  min-height: 50px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 19px;
+  border: 0;
+  border-radius: 10px;
+  background: linear-gradient(100deg, #ffe28a 0%, #ffb51d 100%);
+  color: #17130a;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  transition: filter 160ms ease, transform 160ms ease;
+}
+
+.hana-auth__submit:hover:not(:disabled) {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.hana-auth__submit:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.hana-auth__security {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  margin-top: 23px;
+  color: #8991a0;
+  font-size: 11px;
+}
+
+.hana-auth__security svg {
+  color: #d8ae51;
+}
+
+.hana-auth__switch {
+  margin: 19px 0 0;
+  color: #a0a7b4;
+  font-size: 12px;
+  text-align: center;
+}
+
+.hana-auth__switch a {
+  color: #ffd16a;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.hana-auth__switch a:hover {
+  text-decoration: underline;
+}
+
+.hana-auth__copyright {
+  position: absolute;
+  right: 0;
+  bottom: -24px;
+  left: 0;
+  margin: 0;
+  color: #737b87;
+  font-size: 10px;
+  text-align: center;
+}
+
+.hana-auth__mobile-logo {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .hana-auth__layout {
+    grid-template-columns: minmax(0, 0.9fr) minmax(370px, 1.1fr);
+    gap: 34px;
+    padding-right: 28px;
+    padding-left: 28px;
+  }
+
+}
+
+@media (max-width: 720px) {
+  .hana-auth__layout {
+    display: block;
+    min-height: 100svh;
+    padding: 18px 16px 45px;
+  }
+
+  .hana-auth__story {
+    display: none;
+  }
+
+  .hana-auth__panel {
+    min-height: calc(100svh - 63px);
+    padding: 56px clamp(18px, 6vw, 32px) 30px;
+    border-radius: 21px;
+  }
+
+  .hana-auth__mobile-logo {
+    position: absolute;
+    top: 13px;
+    left: 50%;
+    display: block;
+    width: 145px;
+    height: 40px;
+    transform: translateX(-50%);
+  }
+
+  .hana-auth__mobile-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .hana-auth__back {
+    top: 23px;
+    left: 20px;
+    font-size: 0;
+  }
+
+  .hana-auth__form-wrap {
+    margin-top: 18px;
+  }
+
+  .hana-auth__copyright {
+    bottom: -30px;
+  }
+}
+
+@media (max-width: 380px) {
+  .hana-auth__layout {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .hana-auth__panel {
+    padding-right: 17px;
+    padding-left: 17px;
+  }
+
+  .hana-auth__steps {
+    gap: 6px;
+    font-size: 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hana-auth *,
+  .hana-auth *::before,
+  .hana-auth *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

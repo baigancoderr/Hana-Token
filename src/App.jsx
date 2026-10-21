@@ -34,6 +34,7 @@ import Settings from './dashboard/pages/Settings'
 import DSESection from './Components/DSESection'
 import HanaStability from './Components/HanaStability'
 import DashboardAccessGate from './dashboard/components/DashboardAccessGate'
+import AuthPage from './auth/AuthPage'
 
 // Landing page
 function LandingPage() {
@@ -65,6 +66,8 @@ function App() {
     <Routes>
       {/* Landing */}
       <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<AuthPage mode="login" />} />
+      <Route path="/register" element={<AuthPage mode="register" />} />
 
       {/* Dashboard */}
       <Route
