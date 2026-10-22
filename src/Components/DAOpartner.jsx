@@ -64,16 +64,22 @@ function Corners({ className = "top-3 left-3", bottom = "bottom-3 right-3" }) {
 }
 
 /* Hexagon with a 1px border. clip-path clips box-shadow, so the glow is a drop-shadow on the wrapper. */
-function Hex({ glow = false, children, className = "" }) {
+function Hex({ glow = false, children, className = "", squareBelowMd = false }) {
+  const shapeClass = squareBelowMd
+    ? "[clip-path:none] md:[clip-path:polygon(8%_0,92%_0,100%_50%,92%_100%,8%_100%,0_50%)]"
+    : HEX;
+  const radiusClass = squareBelowMd ? "rounded-xl md:rounded-none" : "";
+  const contentPaddingClass = squareBelowMd ? "px-4 md:px-[12%]" : "px-[12%]";
+
   return (
     <div
       className={`h-full ${
         glow ? "drop-shadow-[0_0_10px_rgba(255,197,66,0.4)]" : ""
       } ${className}`}
     >
-      <div className={`h-full p-px ${HEX} ${glow ? "bg-[#FFC542]" : "bg-[#FFC542]/25"}`}>
+      <div className={`h-full p-px ${shapeClass} ${radiusClass} ${glow ? "bg-[#FFC542]" : "bg-[#FFC542]/25"}`}>
         <div
-          className={`flex h-full min-h-[64px] items-center justify-center bg-[#111111] px-[12%] py-3 text-center ${HEX}`}
+          className={`flex h-full min-h-[64px] items-center justify-center bg-[#111111] py-3 text-center ${contentPaddingClass} ${shapeClass} ${radiusClass}`}
         >
           {children}
         </div>
@@ -119,7 +125,7 @@ function EconomicsRow({ label, text }) {
 
 function IncentiveTile({ value, label, glow }) {
   return (
-    <Hex glow={glow}>
+    <Hex glow={glow} squareBelowMd>
       <div className="min-w-0">
        <p className="break-words font-['Unbounded'] text-base font-semibold text-transparent bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text sm:text-lg">
   {value}
@@ -135,12 +141,13 @@ function IncentiveTile({ value, label, glow }) {
 export default function DaoEconomicsSection() {
   return (
     <section
+      id="dao-protocol"
       aria-label="DAO partner program, token economics and rank incentives"
-      className="overflow-x-hidden py-12 w-full font-[ bg-black'Inter'] text-white sm:py-16 lg:py-20 lg:px-6"
+      className="overflow-x-hidden px-6 py-3 mt-6 w-full font-[ bg-black'Inter'] text-white sm:py-16 lg:py-10 lg:px-12"
     >
-      <div className="flex flex-col gap-14 mx-auto w-full max-w-[1600px] sm:px-6 lg:gap-20">
+      <div className="flex flex-col gap-14 mx-auto w-full max-w-[1600px]  lg:gap-10">
         {/* A. DAO Partner Program */}
-        <div className="grid items-start gap-10 gap-12 lg:grid-cols-2">
+        <div className="grid items-start gap-7 md:gap-12 lg:grid-cols-2">
           <div className="min-w-0">
             <Heading>
              <span className="text-white">DAO Partner</span>{" "}
@@ -190,14 +197,13 @@ export default function DaoEconomicsSection() {
         </div>
 
         {/* B + C. Token Economics (left) and Rank Incentives (right) */}
-        <div className="grid items-start gap-12 gap-10 lg:grid-cols-2">
+        <div className="grid items-start gap-6 md:gap-10 lg:grid-cols-2">
           <section aria-labelledby="economics-heading" className="min-w-0 lg:pt-6">
-            <Heading className="">
+            <Heading className="w-full">
               <span className="text-white">Token</span>{" "}
 <span className="text-transparent bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text">
   Economics
 </span>
-<br />
 <span className="text-transparent bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text">
   &amp; Stabilization
 </span>
@@ -221,7 +227,7 @@ export default function DaoEconomicsSection() {
 
           <section
             aria-labelledby="rank-heading"
-            className="p-5 min-w-0 bg-gradient-to-b from-[#191919] to-black rounded-[1.75rem] border-[#FFC542]/70 rounded-[2.25rem] border sm:p-8"
+            className="p-5 min-w-0 bg-gradient-to-b from-[#191919] to-black rounded-[10px] border-[#FFC542]/70 lg:rounded-[2.25rem] border sm:p-8"
           >
             <Heading>
               <span id="rank-heading">

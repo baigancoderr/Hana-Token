@@ -52,9 +52,10 @@ function LandingPage() {
         <DSESection/>
         <HanaStability/>
         <DAOpartner />
+          <Token />
         <Ecosystem />
-        <Token />
-        <Tokonomics />
+      
+        {/* <Tokonomics /> */}
         <Roadmap />
         <Team />
         <FAQ />

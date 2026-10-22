@@ -6,12 +6,12 @@ const AboutUs = () => {
   return (
     <section
       id="about"
-      className="font-chakra-petch relative w-full overflow-hidden bg-black px-5 py-12 text-white sm:px-8 sm:py-16 lg:px-12 lg:py-[30px]"
+      className="font-chakra-petch relative w-full overflow-hidden bg-black px-5 py-6 text-white sm:px-8 sm:py-16 lg:px-12 lg:py-[30px]"
     >
       <div className="mx-auto max-w-[1600px]">
 
         {/* Top Section */}
-        <StaggerGroup className="grid grid-cols-1 gap-10 md:grid-cols-2 md:items-center md:gap-8 lg:grid-cols-[55%_45%] lg:gap-0">
+        <StaggerGroup className="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-center md:gap-8 lg:grid-cols-[55%_45%] lg:gap-0">
 
           {/* Left Content */}
           <StaggerItem className="flex flex-col items-start">
@@ -48,7 +48,7 @@ const AboutUs = () => {
                 THE ECOSYSTEM
               </p>
 
-              <p className="max-w-[500px] text-[18px] font-normal leading-[1.65] text-[#B8B1C8]">
+              <p className="max-w-[500px] text-[15px] font-normal leading-[1.5] md:leading-[1.65] text-[#B8B1C8]">
                 The ecosystem brings together Hana Token, staking, DAO
                 participation, reserve mechanisms, token stabilization and
                 governance-oriented infrastructure.

@@ -159,7 +159,7 @@ export default function Roadmap() {
   };
 
   return (
-    <section className="relative mx-auto max-w-[1600px]  px-5 lg:px-10 isolate min-h-screen overflow-clip text-[#e8f0fb]">
+    <section id="roadmap" className="relative mx-auto max-w-[1600px]  px-5 lg:px-10 isolate min-h-screen overflow-clip text-[#e8f0fb]">
       <video
         className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover opacity-100"
         src={roadmapVideo}

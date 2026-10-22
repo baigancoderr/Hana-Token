@@ -20,7 +20,7 @@ export default function ContractAddress() {
   };
 
   return (
-    <section className="mx-auto my-2 px-4 py-5 w-[95%] max-w-[1600px] font-[ bg-[linear-gradient(126.37deg,#1B1B1B_1%,#0C0C0C_62.51%,#000000_99.43%)] rounded-2xl'Poppins',sans-serif] text-white sm:px-8 sm:py-10 min-[768px]:min-h-[340px] min-[1101px]:relative min-[1101px]:my-20 min-[1101px]:h-[450px] min-[1101px]:px-[60px] min-[1101px]:py-10">
+    <section className="mx-auto my-2 px-4 py-5 w-[95%] max-w-[1600px] font-[ bg-[linear-gradient(126.37deg,#1B1B1B_1%,#0C0C0C_62.51%,#000000_99.43%)] rounded-2xl text-white sm:px-8 md:py-10 min-[768px]:min-h-[340px] min-[1101px]:relative min-[1101px]:my-6 min-[1101px]:h-[450px] min-[1101px]:px-[60px] min-[1101px]:py-10">
       <StaggerGroup className="flex flex-col items-center gap-5 min-[768px]:h-full min-[768px]:flex-row min-[768px]:justify-between">
         <StaggerItem className="flex justify-center w-full min-[768px]:w-[38%] min-[768px]:shrink-0 min-[768px]:justify-start min-[1101px]:absolute min-[1101px] min-[1101px]:left-[40px]">
           <img

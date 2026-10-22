@@ -86,7 +86,7 @@ function ProcessCard({ number, title, description }) {
 
 export default function DSESection() {
   return (
-    <section className="font-chakra-petch  overflow-hidden bg-black px-6 py-8 text-white sm:px-10 sm:py-10 lg:px-10 lg:py-12">
+    <section id="dse" className="font-chakra-petch  overflow-hidden bg-black px-6 py-8 text-white sm:px-10 sm:py-10 lg:px-10 lg:py-12">
       <div className="mx-auto max-w-[1600px]">
         {/* Hero section */}
         <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-8 lg:gap-14">
@@ -141,7 +141,7 @@ export default function DSESection() {
             </span>
           </h2>
 
-          <div className="mt-5  grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 lg:gap-10 xl:gap-18">
+          <div className="mt-5  grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 lg:gap-10 xl:gap-18">
             {steps.map((step) => (
               <ProcessCard key={step.number} {...step} />
             ))}

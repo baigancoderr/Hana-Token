@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowUp, ArrowUpRight, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { Reveal, StaggerGroup, StaggerItem } from "./Motion";
@@ -7,6 +7,8 @@ import { Reveal, StaggerGroup, StaggerItem } from "./Motion";
 const navLinks = [
   { name: "About Us", href: "#about" },
   { name: "How It Works", href: "#how-it-works" },
+  { name: "DSE", href: "#dse" },
+  { name: "DAO Protocol", href: "#dao-protocol" },
   { name: "Token", href: "#token" },
   { name: "Ecosystem", href: "#ecosystem" },
   { name: "Roadmap", href: "#roadmap" },
@@ -14,6 +16,14 @@ const navLinks = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setShowScrollToTop(window.scrollY > 300);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <Reveal as="header" className="header-gradient-border mx-auto max-w-[1600px] font-chakra-petch bg-[#000611] text-white">
@@ -28,7 +38,7 @@ export default function Navbar() {
         </Reveal>
 
         {/* Desktop Navigation */}
-        <StaggerGroup className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-5 min-[1025px]:flex xl:gap-6">
+        <StaggerGroup className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-3 min-[1025px]:flex xl:gap-6">
           {navLinks.map((link) => (
             <StaggerItem
               as="a"
@@ -42,7 +52,7 @@ export default function Navbar() {
         </StaggerGroup>
 
         {/* Desktop Actions */}
-        <StaggerGroup className="hidden items-center gap-8 min-[481px]:flex xl:gap-9">
+        <StaggerGroup className="hidden items-center gap-3 min-[481px]:flex xl:gap-4">
           <StaggerItem
             as={Link}
             to="/login"
@@ -54,7 +64,7 @@ export default function Navbar() {
           <StaggerItem
             as={Link}
             to="/register"
-            className="group flex h-[46px] xl:h-[51px] min-w-[60px] xl:min-w-[100px] items-center justify-center gap-7 rounded-[9px] rounded-br-[9px] bg-gradient-to-r from-[#ffe69c] via-[#ffca48] to-[#ffb51c] px-7 text-[17px] font-semibold text-black transition-all duration-300 hover:brightness-105"
+            className="group flex h-[46px] xl:h-[51px] min-w-[60px] xl:min-w-[80px] items-center justify-center gap-2 rounded-[9px] rounded-br-[9px] bg-gradient-to-r from-[#ffe69c] via-[#ffca48] to-[#ffb51c] px-7 text-[16px] font-semibold text-black transition-all duration-300 hover:brightness-105"
           >
             <span>Join Now</span>
             <ArrowUpRight
@@ -117,6 +127,17 @@ export default function Navbar() {
           </StaggerGroup>
         )}
       </nav>
+      {showScrollToTop && (
+        <button
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          aria-label="Scroll to top"
+          title="Scroll to top"
+          className="fixed bottom-5 right-5 z-[60] inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#FFB51D]/60 bg-[#111]/90 text-[#FFB51D] shadow-lg backdrop-blur transition hover:bg-[#FFB51D] hover:text-black sm:bottom-7 sm:right-7"
+        >
+          <ArrowUp size={21} />
+        </button>
+      )}
     </Reveal>
   );
 }

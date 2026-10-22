@@ -24,7 +24,7 @@ const features = [
 export default function HanaProtocol() {
  
 return (
-  <section className="relative overflow-hidden bg-black px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
+  <section id="how-it-works" className="relative overflow-hidden bg-black px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
     {/* Background glow */}
  
 
@@ -63,7 +63,7 @@ return (
                 </div>
 
                 <h3
-                  className="chakra-petch min-w-0 text-xs font-black leading-5 sm:text-sm md:max-w-[230px] md:text-[25px] md:leading-8"
+                  className="chakra-petch min-w-0 text-xs font-black leading-5 sm:text-sm md:max-w-[230px] md:text-[20px]  lg:text-[25px] md:leading-8"
                   style={{
                     background: "linear-gradient(90deg, #E7AD38 0%, #FFD98C 100%)",
                     WebkitBackgroundClip: "text",

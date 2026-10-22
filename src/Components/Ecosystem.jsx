@@ -1,4 +1,6 @@
 
+import { useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { StaggerGroup, StaggerItem } from "./Motion";
 
 const ecosystemItems = [
@@ -37,8 +39,22 @@ const ecosystemItems = [
 ];
 
 export default function Ecosystem() {
+  const [activeCard, setActiveCard] = useState(0);
+  const sliderRef = useRef(null);
+
+  const goToCard = (index) => {
+    const slider = sliderRef.current;
+    if (!slider) return;
+
+    slider.scrollTo({
+      left: index * slider.clientWidth,
+      behavior: "smooth",
+    });
+    setActiveCard(index);
+  };
+
   return (
-    <section className="font-chakra-petch  bg-[#050309] px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-[52px]">
+    <section id="ecosystem" className="font-chakra-petch  bg-[#050309] px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-[20px]">
       <div className="mx-auto max-w-[1600px]">
 
         {/* Header */}
@@ -58,12 +74,20 @@ export default function Ecosystem() {
         </StaggerGroup>
 
         {/* Ecosystem Cards */}
-        <StaggerGroup className="grid grid-cols-1 gap-x-7 gap-y-8 pt-3 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-[38px] lg:grid-cols-4 lg:gap-x-5 xl:gap-x-10 lg:gap-y-[76px]">
+        <StaggerGroup
+          ref={sliderRef}
+          onScroll={(event) => {
+            const slider = event.currentTarget;
+            setActiveCard(Math.round(slider.scrollLeft / slider.clientWidth));
+          }}
+          aria-label="Ecosystem cards"
+          className="min-w-0 flex snap-x snap-mandatory overflow-x-auto scroll-smooth pt-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-[38px] md:overflow-visible md:snap-none lg:grid-cols-4 lg:gap-x-5 xl:gap-x-10 lg:gap-y-[76px]"
+        >
 
           {ecosystemItems.map((item) => (
             <StaggerItem
               key={item.title}
-              className="relative mt-3 transition-transform duration-300 hover:-translate-y-1"
+              className="relative mt-3 w-full shrink-0 snap-center transition-transform duration-300 hover:-translate-y-1 md:w-auto md:shrink md:snap-align-none"
             >
               <div
                 aria-hidden="true"
@@ -88,6 +112,51 @@ export default function Ecosystem() {
           ))}
 
         </StaggerGroup>
+
+        <StaggerGroup className="mt-5 flex items-center justify-between md:hidden">
+          <StaggerItem
+            as="button"
+            type="button"
+            onClick={() => goToCard(activeCard - 1)}
+            disabled={activeCard === 0}
+            aria-label="Previous ecosystem card"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#DFA52E]/60 text-[#E7AD38] transition-colors hover:bg-[#E7AD38]/10 disabled:cursor-not-allowed disabled:opacity-35"
+          >
+            <ChevronLeft size={20} />
+          </StaggerItem>
+
+          <StaggerGroup className="flex items-center gap-2" aria-label="Choose ecosystem card">
+            {ecosystemItems.map((item, index) => (
+              <StaggerItem
+                as="button"
+                key={item.title}
+                type="button"
+                onClick={() => goToCard(index)}
+                aria-label={`Go to ${item.title.replace("\n", " ")} card`}
+                aria-current={activeCard === index ? "step" : undefined}
+                className={`h-1.5 rounded-full transition-all ${
+                  activeCard === index
+                    ? "w-6 bg-[#E7AD38]"
+                    : "w-1.5 bg-white/30 hover:bg-white/60"
+                }`}
+              />
+            ))}
+          </StaggerGroup>
+
+          <StaggerItem
+            as="button"
+            type="button"
+            onClick={() => goToCard(activeCard + 1)}
+            disabled={activeCard === ecosystemItems.length - 1}
+            aria-label="Next ecosystem card"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#DFA52E]/60 text-[#E7AD38] transition-colors hover:bg-[#E7AD38]/10 disabled:cursor-not-allowed disabled:opacity-35"
+          >
+            <ChevronRight size={20} />
+          </StaggerItem>
+        </StaggerGroup>
+        <p className="mt-2 text-center text-xs text-white/50 md:hidden">
+          Swipe to explore ecosystem
+        </p>
 
            {/* Vision & Mission */}
                 <StaggerGroup className="mt-8 grid grid-cols-1 gap-8 sm:mt-10 md:grid-cols-2 md:gap-7 lg:mt-[80px] lg:gap-7">
