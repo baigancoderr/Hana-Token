@@ -114,7 +114,7 @@ export default function HanaStability() {
 
             <div className="mt-4 h-[2px] w-[27px] bg-gradient-to-r from-[#F8E096] to-[#FFB01B]" />
 
-            <p className="chakra-petch mt-4 bg-[linear-gradient(90deg,#8F5B12_0%,#DFA52E_25%,#FFF1A8_48%,#E7AD38_68%,#9D6415_100%)] bg-clip-text text-center text-[15px] font-extrabold tracking-[3px] text-transparent lg:text-[18px] sm:tracking-[4px]">
+            <p className="chakra-petch mt-4 bg-[linear-gradient(90deg,#8F5B12_0%,#DFA52E_25%,#FFF1A8_48%,#E7AD38_68%,#9D6415_100%)] bg-clip-text text-center text-[15px] !font-extrabold tracking-[3px] text-transparent lg:text-[18px] sm:tracking-[4px]">
               Participate || Qualify || Grow
             </p>
           </div>

@@ -153,7 +153,7 @@
   flex-direction: column;
   justify-content: center;
   min-height: calc(100vh - 84px);
-  padding: 30px clamp(23px, 3.6vw, 52px);
+  padding: 30px clamp(16px, 2.5vw, 36px);
   border: 1px solid rgb(255 255 255 / 10%);
   border-radius: 26px;
   background: linear-gradient(145deg, rgb(18 23 32 / 94%), rgb(8 11 17 / 96%));
@@ -245,7 +245,7 @@
   gap: 9px;
   margin: 0 0 22px;
   color: #777f8e;
-  font-size: 10px;
+  font-size: 12px;
   white-space: nowrap;
 }
 
@@ -376,10 +376,55 @@
   box-shadow: 0 0 10px rgb(73 216 154 / 70%);
 }
 
+.hana-auth__disconnect {
+  display: inline-flex;
+  width: 100%;
+  min-height: 50px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  flex: 1;
+  margin-top: 0;
+  padding: 7px 9px;
+  border: 1px solid rgb(255 146 146 / 22%);
+  border-radius: 8px;
+  background: transparent;
+  color: #ff9292;
+  cursor: pointer;
+  font-size: 11px;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.hana-auth__disconnect:hover:not(:disabled) {
+  border-color: rgb(255 146 146 / 48%);
+  background: rgb(255 146 146 / 8%);
+}
+
+.hana-auth__disconnect:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.hana-auth__disconnect:focus-visible {
+  outline: 2px solid #ffd26e;
+  outline-offset: 2px;
+}
+
 .hana-auth__form {
   display: flex;
   flex-direction: column;
   margin-top: 23px;
+}
+
+.hana-auth__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 19px;
+}
+
+.hana-auth__actions > .hana-auth__submit {
+  flex: 1;
+  margin-top: 0;
 }
 
 .hana-auth__form label {
@@ -450,6 +495,12 @@
   font-size: 14px;
   font-weight: 700;
   transition: filter 160ms ease, transform 160ms ease;
+}
+
+@media (max-width: 767px) {
+  .hana-auth__actions {
+    flex-direction: column;
+  }
 }
 
 .hana-auth__submit:hover:not(:disabled) {
@@ -531,7 +582,7 @@
 
   .hana-auth__panel {
     min-height: calc(100svh - 63px);
-    padding: 56px clamp(18px, 6vw, 32px) 30px;
+    padding: 56px clamp(14px, 4vw, 24px) 30px;
     border-radius: 21px;
   }
 
@@ -573,13 +624,13 @@
   }
 
   .hana-auth__panel {
-    padding-right: 17px;
-    padding-left: 17px;
+    padding-right: 13px;
+    padding-left: 13px;
   }
 
   .hana-auth__steps {
     gap: 6px;
-    font-size: 9px;
+    font-size: 11px;
   }
 }
 

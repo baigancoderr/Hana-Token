@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 /* Fonts: add once to index.html <head> or the top of index.css:
    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Unbounded:wght@500;600;700&display=swap");
 */
@@ -21,7 +23,7 @@ const ECONOMICS = [
 
 const TILES = [
   { value: "10%", label: "Rank Reward Of Pool" },
-  { value: "1 / 2 / 3%", label: "Effective Reward", glow: true },
+  { value: "1 / 2 / 3%", label: "Effective Reward" },
   { value: "50%", label: "Maximum Incentive" },
   { value: "$3,218,500", label: "Total Pool" },
 ];
@@ -75,11 +77,11 @@ function Hex({ glow = false, children, className = "", squareBelowMd = false }) 
     <div
       className={`h-full ${
         glow ? "drop-shadow-[0_0_10px_rgba(255,197,66,0.4)]" : ""
-      } ${className}`}
+      } transition-[filter] duration-700 ${className}`}
     >
-      <div className={`h-full p-px ${shapeClass} ${radiusClass} ${glow ? "bg-[#FFC542]" : "bg-[#FFC542]/25"}`}>
+      <div className={`h-full p-px ${shapeClass} ${radiusClass} transition-colors duration-700 ${glow ? "bg-[#FFC542]" : "bg-[#FFC542]/25"}`}>
         <div
-          className={`flex h-full min-h-[64px] items-center justify-center bg-[#111111] py-3 text-center ${contentPaddingClass} ${shapeClass} ${radiusClass}`}
+          className={`flex h-full min-h-[64px] items-center justify-center py-3 text-center transition-colors duration-700 ${glow ? "bg-[#1C170C]" : "bg-[#111111]"} ${contentPaddingClass} ${shapeClass} ${radiusClass}`}
         >
           {children}
         </div>
@@ -112,9 +114,13 @@ function OptionCard({ title, children, className = "", glow = false }) {
   );
 }
 
-function EconomicsRow({ label, text }) {
+function EconomicsRow({ label, text, glow }) {
   return (
-    <div className="grid grid-cols-[5.5rem_1fr] items-center gap-3 gap-4 px-4 py-4 px-6 py-5 bg-[#111111] rounded-lg sm:grid-cols-[7rem_1fr]">
+    <div className={`grid grid-cols-1 items-start gap-3 gap-4 rounded-lg border px-4 py-4 px-6 py-5 transition-all duration-700 md:grid-cols-[7rem_1fr] md:items-center ${
+      glow
+        ? "border-[#FFC542]/70 bg-[#1C170C] shadow-[0_0_16px_rgba(255,197,66,0.15)]"
+        : "border-transparent bg-[#111111]"
+    }`}>
       <dt className="break-words font-['Unbounded'] text-sm font-semibold leading-tight text-transparent bg-[linear-gradient(90deg,#E7AD38_0%,#FFD98C_100%)] bg-clip-text">
   {label}
 </dt>
@@ -139,11 +145,30 @@ function IncentiveTile({ value, label, glow }) {
 /* ---------- Section ---------- */
 
 export default function DaoEconomicsSection() {
+  const [activeTile, setActiveTile] = useState(0);
+  const [activeEconomicsRow, setActiveEconomicsRow] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const intervalId = window.setInterval(() => {
+      setActiveTile((currentTile) => (currentTile + 1) % TILES.length);
+    }, 2400);
+    const economicsIntervalId = window.setInterval(() => {
+      setActiveEconomicsRow((currentRow) => (currentRow + 1) % (ECONOMICS.length + 1));
+    }, 2400);
+
+    return () => {
+      window.clearInterval(intervalId);
+      window.clearInterval(economicsIntervalId);
+    };
+  }, []);
+
   return (
     <section
       id="dao-protocol"
       aria-label="DAO partner program, token economics and rank incentives"
-      className="overflow-x-hidden px-6 py-3 mt-6 w-full font-[ bg-black'Inter'] text-white sm:py-16 lg:py-10 lg:px-12"
+      className="overflow-x-hidden px-6 py-3 mt-6 w-full font-[ bg-black'Inter'] text-white sm:py-16 lg:py-10 lg:px-10"
     >
       <div className="flex flex-col gap-14 mx-auto w-full max-w-[1600px]  lg:gap-10">
         {/* A. DAO Partner Program */}
@@ -210,12 +235,20 @@ export default function DaoEconomicsSection() {
             </Heading>
 
             <dl className="mt-8 space-y-4 space-y-5 sm:mt-10">
-              {ECONOMICS.map((row) => (
-                <EconomicsRow key={row.label} {...row} />
+              {ECONOMICS.map((row, index) => (
+                <EconomicsRow
+                  key={row.label}
+                  {...row}
+                  glow={activeEconomicsRow === index}
+                />
               ))}
             </dl>
 
-            <div className="grid grid-cols-[5.5rem_1fr] items-center gap-3 gap-4 mt-5 px-4 py-4 px-6 bg-black rounded-lg border-[#FFC542]/60 border sm:grid-cols-[7rem_1fr]">
+            <div className={`grid grid-cols-1 items-start gap-3 gap-4 mt-5 rounded-lg border px-4 py-4 px-6 transition-all duration-700 md:grid-cols-[7rem_1fr] md:items-center ${
+              activeEconomicsRow === ECONOMICS.length
+                ? "border-[#FFC542]/70 bg-[#1C170C] shadow-[0_0_16px_rgba(255,197,66,0.15)]"
+                : "border-[#FFC542]/60 bg-black"
+            }`}>
               <p className="font-['Unbounded'] text-sm font-semibold text-transparent bg-[linear-gradient(90deg,#E7AD38_0%,#FFD98C_100%)] bg-clip-text">
   Note
 </p>
@@ -240,8 +273,12 @@ export default function DaoEconomicsSection() {
             </Heading>
 
             <div className="grid grid-cols-1 gap-3 mt-8 min-[360px]:grid-cols-2 sm:gap-4">
-              {TILES.map((tile) => (
-                <IncentiveTile key={tile.label} {...tile} />
+              {TILES.map((tile, index) => (
+                <IncentiveTile
+                  key={tile.label}
+                  {...tile}
+                  glow={activeTile === index}
+                />
               ))}
             </div>
 

@@ -44,7 +44,7 @@ function LandingPage() {
   return (
     <MotionConfig reducedMotion="user">
       <>
-        <SectionReveal><Headers /></SectionReveal>
+        <SectionReveal className="relative z-[100]"><Headers /></SectionReveal>
         <SectionReveal><Hero /></SectionReveal>
         <SectionReveal><HanaProtocol /></SectionReveal>
         <SectionReveal><AboutUs /></SectionReveal>

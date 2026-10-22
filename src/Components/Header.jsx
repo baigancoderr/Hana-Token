@@ -27,7 +27,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <Reveal as="header" className="header-gradient-border mx-auto max-w-[1600px] font-chakra-petch bg-[#000611] text-white">
+    <Reveal as="header" className="header-gradient-border relative z-[100] mx-auto max-w-[1600px] font-chakra-petch bg-[#000611] text-white">
       <nav className="relative flex min-h-[75px] md:min-h-[90px] items-center justify-between px-4 sm:px-10 lg:px-[2%] xl:px-[2%]">
         {/* Logo */}
         <Reveal as="a" href="/" className="shrink-0" aria-label="Khana Home">
@@ -90,42 +90,39 @@ export default function Navbar() {
 
         {/* Mobile Navigation */}
         {menuOpen && (
-          <StaggerGroup className="absolute left-0 right-0 top-full z-50 border-t border-white/10 bg-[#020710] px-6 py-5 shadow-xl min-[1025px]:hidden">
+          <div className="absolute left-0 right-0 top-full z-50 border-t border-white/10 bg-[#020710] px-6 py-5 shadow-xl min-[1025px]:hidden">
             <div className="flex flex-col gap-1">
               {navLinks.map((link) => (
-                <StaggerItem
-                  as="a"
+                <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
                   className="rounded-md px-3 py-3 text-[15px] text-[#d6d9e2] transition hover:bg-white/5 hover:text-[#ffbd32]"
                 >
                   {link.name}
-                </StaggerItem>
+                </a>
               ))}
 
               <div className="mt-3 hidden items-center gap-4 border-t border-white/10 pt-4 max-[480px]:flex">
-                <StaggerItem
-                  as={Link}
+                <Link
                   to="/login"
                   onClick={() => setMenuOpen(false)}
                   className="flex-1 rounded-lg border border-white/15 py-3 text-center text-sm hover:border-[#ffbd32]"
                 >
                   Login
-                </StaggerItem>
+                </Link>
 
-                <StaggerItem
-                  as={Link}
+                <Link
                   to="/register"
                   onClick={() => setMenuOpen(false)}
                   className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#ffe69c] to-[#ffb51c] py-3 text-sm font-semibold text-black"
                 >
                   Join Now
                   <ArrowUpRight size={19} />
-                </StaggerItem>
+                </Link>
               </div>
             </div>
-          </StaggerGroup>
+          </div>
         )}
       </nav>
       {showScrollToTop &&
