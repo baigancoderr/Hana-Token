@@ -45,6 +45,20 @@ export function Reveal({ as = "div", children, ...props }) {
   );
 }
 
+export function SectionReveal({ children, className = "" }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 28, scale: 0.99, filter: "blur(5px)" }}
+      whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+      viewport={{ once: true, amount: 0.12 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 export function StaggerGroup({ as = "div", children, ...props }) {
   const Element = useMotionElement(as);
 

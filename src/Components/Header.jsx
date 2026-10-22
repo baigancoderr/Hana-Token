@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ArrowUp, ArrowUpRight, Menu, X } from "lucide-react";
+import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { Reveal, StaggerGroup, StaggerItem } from "./Motion";
@@ -127,17 +128,19 @@ export default function Navbar() {
           </StaggerGroup>
         )}
       </nav>
-      {showScrollToTop && (
-        <button
-          type="button"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          aria-label="Scroll to top"
-          title="Scroll to top"
-          className="fixed bottom-5 right-5 z-[60] inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#FFB51D]/60 bg-[#111]/90 text-[#FFB51D] shadow-lg backdrop-blur transition hover:bg-[#FFB51D] hover:text-black sm:bottom-7 sm:right-7"
-        >
-          <ArrowUp size={21} />
-        </button>
-      )}
+      {showScrollToTop &&
+        createPortal(
+          <button
+            type="button"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            aria-label="Scroll to top"
+            title="Scroll to top"
+            className="fixed bottom-5 right-5 z-[9999] inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#FFB51D]/60 bg-[#111]/90 text-[#FFB51D] shadow-lg backdrop-blur transition hover:bg-[#FFB51D] hover:text-black sm:bottom-7 sm:right-7"
+          >
+            <ArrowUp size={21} />
+          </button>,
+          document.body,
+        )}
     </Reveal>
   );
 }

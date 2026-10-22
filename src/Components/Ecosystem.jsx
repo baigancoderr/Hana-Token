@@ -54,7 +54,7 @@ export default function Ecosystem() {
   };
 
   return (
-    <section id="ecosystem" className="font-chakra-petch  bg-[#050309] px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-[20px]">
+    <section id="ecosystem" className="font-chakra-petch  bg-[#050309] px-5 py-6 sm:px-8 sm:py-12 lg:px-12 lg:py-[20px]">
       <div className="mx-auto max-w-[1600px]">
 
         {/* Header */}
@@ -171,7 +171,7 @@ export default function Ecosystem() {
                      HANA Gaming
                     </h3>
         
-                    <p className="mt-2 max-w-[600px] text-[18px] leading-[1.65] text-[#B8B1C8]">
+                    <p className="mt-2 max-w-[600px] text-[15px] md:text-[18px] leading-[1.65] text-[#B8B1C8]">
                     More than a token. A growing gaming community. A DAOvoted gaming initiative intended to bring interactive digital
 experiences into the HANA ecosystem, and a utility
 designed to help the token reach new heights. Game
@@ -191,7 +191,7 @@ once finalized by DAO Members.
                      Hana AI Wallet
                     </h3>
         
-                    <p className="mt-2 max-w-[600px] text-[18px] leading-[1.65] text-[#B8B1C8]">
+                    <p className="mt-2 max-w-[600px] text-[15px] md:text-[18px] leading-[1.65] text-[#B8B1C8]">
                     A proposed wallet initiative exploring AI-assisted digitalasset management. Final features, security architecture
 and availability remain to be confirmed by DAO Members.
                     </p>

@@ -73,14 +73,14 @@ export default function HanaStability() {
             {features.map((feature) => (
               <article
                 key={feature.title}
-                className="flex w-[155px] shrink-0 snap-start flex-col items-center rounded-[10px] border border-[#D9D9D933] bg-gradient-to-b from-[#303030] to-[#242424] px-3 py-4 text-center transition duration-300 hover:border-[#E7AD38]/40 sm:w-[170px] sm:px-4 sm:py-5 lg:w-auto"
+                className="flex w-[185px] shrink-0 snap-start flex-col items-center rounded-[10px] border border-[#D9D9D933] bg-gradient-to-b from-[#303030] to-[#242424] px-3 py-4 text-center transition duration-300 hover:border-[#E7AD38]/40 sm:w-[170px] sm:px-4 sm:py-5 lg:w-auto"
               >
                 <div className="mb-2 flex h-[86px] w-full items-center justify-center sm:h-[96px]">
                   <img
                     src={feature.image}
                     alt={feature.title}
                     loading="lazy"
-                    className="h-full max-w-[90px] object-contain drop-shadow-[0_0_10px_rgba(231,173,56,0.12)]"
+                    className="h-full max-w-[70px] md:max-w-[90px] object-contain drop-shadow-[0_0_10px_rgba(231,173,56,0.12)]"
                   />
                 </div>
 

@@ -31,7 +31,7 @@ return (
     <div className="relative mx-auto max-w-[1600px]">
       {/* Heading */}
       <h2
-        className="mb-10 unbounded text-center text-[25px] font-bold tracking-[-0.6px] md:text-[40px]"
+        className="mb-6 md:mb-10 unbounded text-left text-[25px] font-bold tracking-[-0.6px] md:text-center md:text-[40px]"
         style={{
           background: "linear-gradient(90deg, #F8E096 0%, #FFB01B 100%)",
           WebkitBackgroundClip: "text",

@@ -184,7 +184,7 @@ export default function Roadmap() {
             </StaggerItem>
           </div>
 
-          <StaggerItem as="h1" className="mt-8 max-w-[450px] unbounded text-[25px] sm:text-[30px] md:text-[40px] xl:text-[55px] font-extrabold leading-[1.2] tracking-normal">
+          <StaggerItem as="h1" className="mt-5 md:mt-8 max-w-[450px] unbounded text-[25px] sm:text-[30px] md:text-[40px] xl:text-[55px] font-extrabold leading-[1.2] tracking-normal">
             The vision,
          
             unfolding.
