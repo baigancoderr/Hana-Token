@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Bell, Search, User, ChevronDown, TrendingUp, Menu, LogOut } from "lucide-react";
-import { useAppKitAccount } from "@reown/appkit/react";
+import { Bell, Search, User, ChevronDown, Menu, LogOut, Network, Wallet } from "lucide-react";
+import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
 import { useNavigate } from "react-router-dom";
 
 export default function Topbar({
@@ -12,6 +12,7 @@ export default function Topbar({
   const [profileOpen, setProfileOpen] = useState(false);
   const profileRef = useRef(null);
   const navigate = useNavigate();
+  const { open } = useAppKit();
   const { address } = useAppKitAccount({ namespace: "eip155" });
 
   useEffect(() => {
@@ -130,6 +131,30 @@ export default function Topbar({
                 type="button"
               >
                 My Profile
+              </button>
+              <button
+                className="flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-left text-sm text-white transition hover:bg-white/5 hover:text-[#FFB51D]"
+                onClick={() => {
+                  setProfileOpen(false);
+                  open({ view: "Networks", namespace: "eip155" });
+                }}
+                role="menuitem"
+                type="button"
+              >
+                <Network size={15} />
+                Switch Network
+              </button>
+              <button
+                className="flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-left text-sm text-white transition hover:bg-white/5 hover:text-[#FFB51D]"
+                onClick={() => {
+                  setProfileOpen(false);
+                  open({ view: "Connect", namespace: "eip155" });
+                }}
+                role="menuitem"
+                type="button"
+              >
+                <Wallet size={15} />
+                Change Wallet
               </button>
               {logoutError && (
                 <p className="px-3 py-2 text-xs text-red-400" role="alert">

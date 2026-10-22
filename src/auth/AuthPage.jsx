@@ -8,10 +8,12 @@ import {
   CheckCircle2,
   Copy,
   LockKeyhole,
+  LogOut,
   ShieldCheck,
   Wallet,
 } from "lucide-react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useDisconnect } from "wagmi";
 import logo from "../assets/logo.png";
 import {
   isWalletRegistered,
@@ -31,6 +33,7 @@ export default function AuthPage({ mode }) {
   const { open } = useAppKit();
   const { address, isConnected } = useAppKitAccount({ namespace: "eip155" });
   const { open: modalOpen } = useAppKitState();
+  const { disconnectAsync, isPending: disconnectPending } = useDisconnect();
   const navigate = useNavigate();
 
   const handleCopyAddress = async () => {
@@ -47,6 +50,22 @@ export default function AuthPage({ mode }) {
         copyError instanceof Error
           ? `Could not copy wallet address: ${copyError.message}`
           : "Could not copy wallet address.",
+      );
+    }
+  };
+
+  const handleDisconnect = async () => {
+    setError("");
+    setPending(false);
+    setCopied(false);
+
+    try {
+      await disconnectAsync();
+    } catch (disconnectError) {
+      setError(
+        disconnectError instanceof Error
+          ? `Could not disconnect wallet: ${disconnectError.message}`
+          : "Could not disconnect wallet.",
       );
     }
   };
@@ -177,7 +196,7 @@ export default function AuthPage({ mode }) {
             </span>
             <h1>
               {isRegister ? (
-                <>Make your next move <span>count.</span></>
+                <>Make your move <span>count.</span></>
               ) : (
                 <>Welcome back to <span>HANA.</span></>
               )}
@@ -268,7 +287,6 @@ export default function AuthPage({ mode }) {
               </div>
               <span className={`hana-auth__status ${isConnected ? "is-connected" : ""}`} aria-label={isConnected ? "Connected" : "Not connected"} />
             </div>
-
             {isRegister ? (
               <form className="hana-auth__form" onSubmit={handleRegister}>
                 <label htmlFor="hana-referral">Referral wallet address</label>
@@ -285,20 +303,33 @@ export default function AuthPage({ mode }) {
                 />
                 <span className="hana-auth__hint">Enter the EVM wallet address of the person who referred you.</span>
                 {error && <p className="hana-auth__error" role="alert">{error}</p>}
-                {isConnected ? (
-                  <button className="hana-auth__submit" type="submit">
-                    Create account <ArrowRight size={18} />
-                  </button>
-                ) : (
-                  <button
-                    className="hana-auth__submit"
-                    disabled={pending}
-                    onClick={handleConnect}
-                    type="button"
-                  >
-                    {pending ? "Waiting for wallet..." : "Connect wallet"} <ArrowRight size={18} />
-                  </button>
-                )}
+                <div className="hana-auth__actions">
+                  {isConnected ? (
+                    <button className="hana-auth__submit" type="submit">
+                      Create account <ArrowRight size={18} />
+                    </button>
+                  ) : (
+                    <button
+                      className="hana-auth__submit"
+                      disabled={pending}
+                      onClick={handleConnect}
+                      type="button"
+                    >
+                      {pending ? "Waiting for wallet..." : "Connect wallet"} <ArrowRight size={18} />
+                    </button>
+                  )}
+                  {isConnected && (
+                    <button
+                      className="hana-auth__disconnect"
+                      disabled={disconnectPending}
+                      onClick={handleDisconnect}
+                      type="button"
+                    >
+                      <LogOut size={15} />
+                      {disconnectPending ? "Disconnecting..." : "Disconnect wallet"}
+                    </button>
+                  )}
+                </div>
               </form>
             ) : (
               <div className="hana-auth__form">
@@ -306,15 +337,17 @@ export default function AuthPage({ mode }) {
                   Continue with your preferred wallet. You’ll approve the connection securely in your wallet app.
                 </p>
                 {error && <p className="hana-auth__error" role="alert">{error}</p>}
-                <button
-                  className="hana-auth__submit"
-                  disabled={pending}
-                  onClick={handleConnect}
-                  type="button"
-                >
-                  {pending ? "Waiting for wallet..." : isConnected ? "Continue to dashboard" : "Connect wallet"}
-                  <ArrowRight size={18} />
-                </button>
+                <div className="hana-auth__actions">
+                  <button
+                    className="hana-auth__submit"
+                    disabled={pending}
+                    onClick={handleConnect}
+                    type="button"
+                  >
+                    {pending ? "Waiting for wallet..." : isConnected ? "Continue to dashboard" : "Connect wallet"}
+                    <ArrowRight size={18} />
+                  </button>
+                </div>
               </div>
             )}
 

@@ -65,7 +65,7 @@ const Footer = () => {
             BEFORE IMPLEMENTATION
           </StaggerItem>
 
-          <StaggerItem as="p" className="mt-4 max-w-full text-[14px] font-normal leading-7 text-[#B8B0C8] sm:text-[15px]">
+          <StaggerItem as="p" className="mt-4 max-w-full text-[14px] font-normal leading-5  md:leading-7 text-[#B8B0C8] sm:text-[15px]">
             staking, reward, liquidity, DAO, token and economic mechanisms are
             subject to final technical, legal, regulatory, security and
             governance review before implementation.

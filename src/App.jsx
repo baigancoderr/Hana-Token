@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import { MotionConfig } from 'framer-motion'
 import './App.css'
+import { SectionReveal } from './Components/Motion'
 
 // Landing page components
 import Headers from './Components/Header'
@@ -43,24 +44,23 @@ function LandingPage() {
   return (
     <MotionConfig reducedMotion="user">
       <>
-        <Headers />
-        <Hero />
-        <HanaProtocol />
-        <AboutUs />
-        
-        <VisionMission />
-        <DSESection/>
-        <HanaStability/>
-        <DAOpartner />
-        <Ecosystem />
-        <Token />
-        <Tokonomics />
-        <Roadmap />
-        <Team />
-        <FAQ />
-        <ContractAddress />
-        <JoinUs />
-        <Footer />
+        <SectionReveal className="relative z-[100]"><Headers /></SectionReveal>
+        <SectionReveal><Hero /></SectionReveal>
+        <SectionReveal><HanaProtocol /></SectionReveal>
+        <SectionReveal><AboutUs /></SectionReveal>
+        <SectionReveal><VisionMission /></SectionReveal>
+        <SectionReveal><DSESection /></SectionReveal>
+        <SectionReveal><HanaStability /></SectionReveal>
+        <SectionReveal><DAOpartner /></SectionReveal>
+        <SectionReveal><Token /></SectionReveal>
+        <SectionReveal><Tokonomics /></SectionReveal>
+        <SectionReveal><Ecosystem /></SectionReveal>
+        <SectionReveal><Roadmap /></SectionReveal>
+        <SectionReveal><Team /></SectionReveal>
+        <SectionReveal><FAQ /></SectionReveal>
+        <SectionReveal><ContractAddress /></SectionReveal>
+        <SectionReveal><JoinUs /></SectionReveal>
+        <SectionReveal><Footer /></SectionReveal>
       </>
     </MotionConfig>
   )

@@ -106,7 +106,7 @@ export default function Team() {
 
         {/* Heading and Description */}
         <div className="order-first text-center md:order-none md:pt-0 md:text-center">
-          <Reveal as="h2" className="unbounded inline-block bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text text-[30px] font-bold leading-tight tracking-[-1px] text-transparent sm:text-4xl md:text-[28px] lg:text-[30px]">
+          <Reveal as="h2" className="unbounded inline-block bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text text-[25px] md:text-[30px] font-bold leading-tight tracking-[-1px] text-transparent sm:text-4xl md:text-[28px] lg:text-[30px]">
             Our Team
           </Reveal>
 

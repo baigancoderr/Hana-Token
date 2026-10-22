@@ -159,7 +159,7 @@ export default function Roadmap() {
   };
 
   return (
-    <section className="relative mx-auto max-w-[1600px]  px-5 lg:px-10 isolate min-h-screen overflow-clip text-[#e8f0fb]">
+    <section id="roadmap" className="relative mx-auto max-w-[1600px]  px-5 lg:px-10 isolate min-h-screen overflow-clip text-[#e8f0fb]">
       <video
         className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover opacity-100"
         src={roadmapVideo}
@@ -184,7 +184,7 @@ export default function Roadmap() {
             </StaggerItem>
           </div>
 
-          <StaggerItem as="h1" className="mt-8 max-w-[450px] unbounded text-[25px] sm:text-[30px] md:text-[40px] xl:text-[55px] font-extrabold leading-[1.2] tracking-normal">
+          <StaggerItem as="h1" className="mt-5 md:mt-8 max-w-[450px] unbounded text-[25px] sm:text-[30px] md:text-[40px] xl:text-[55px] font-extrabold leading-[1.2] tracking-normal">
             The vision,
          
             unfolding.

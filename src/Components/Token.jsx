@@ -14,7 +14,7 @@ const utilities = [
 
 export default function Token() {
   return (
-    <section className="relative  overflow-hidden bg-black px-5 py-4 font-chakra-petch text-white sm:px-8 sm:py-4 lg:px-12 lg:py-4">
+    <section id="token" className="relative  overflow-hidden bg-black px-5 py-4 font-chakra-petch text-white sm:px-8 sm:py-4 lg:px-12 lg:py-4">
       {/* Background glow */}
       <div
         aria-hidden="true"
@@ -30,7 +30,7 @@ export default function Token() {
             </Reveal>
           </div>
 
-        <div className="grid items-center gap-6 md:grid-cols-[45fr_55fr] lg:gap-6 xl:gap-8">
+        <div className="grid items-center gap-6 md:grid-cols-[50fr_50fr] lg:gap-6 xl:gap-8">
 
           {/* LEFT: TOKEN ORBIT */}
           <Reveal className="flex min-w-0 items-center justify-center">
@@ -45,7 +45,7 @@ export default function Token() {
               {/* Orbit rings */}
               <svg
                 viewBox="0 0 440 440"
-                className="absolute inset-0 h-full w-full overflow-visible"
+                className="absolute left-1/2 top-1/2 h-[88%] w-[88%] -translate-x-1/2 -translate-y-1/2 overflow-visible"
                 fill="none"
                 aria-hidden="true"
               >
@@ -156,10 +156,7 @@ export default function Token() {
             <StaggerItem className="mb-8 sm:mb-10">
              
               <h1 className="unbounded  text-[25px] md:text-[30px] lg:text-[40px] xl:text-[50px] font-bold leading-[1.3] md:leading-[1.12] tracking-[-0.0005em] text-[#E8F0FF]">
-                One Asset.
-               
-                Multiple
-                 Ecosystem Utilities.
+               A Growing Protocol Built as a Timeless Ecosystem
               </h1>
 
           
