@@ -25,7 +25,6 @@ import {
   PieChart,
   Pie,
   Cell,
-  Legend,
 } from "recharts";
 import StatCard from "../components/StatCard";
 import SectionCard from "../components/SectionCard";
@@ -272,15 +271,16 @@ export default function Overview() {
         </SectionCard>
 
         {/* Income Breakdown */}
-        <SectionCard title="Income Breakdown" subtitle="Distribution of earnings">
-          <ResponsiveContainer width="100%" height={220}>
-            <PieChart>
+        <SectionCard title="Income Breakdown" subtitle="Distribution of earnings" className="min-w-0">
+          <div className="min-w-0">
+            <ResponsiveContainer width="100%" height={190}>
+              <PieChart>
               <Pie
                 data={incomeBreakdown}
                 cx="50%"
-                cy="45%"
-                innerRadius={55}
-                outerRadius={80}
+                cy="50%"
+                innerRadius="48%"
+                outerRadius="70%"
                 paddingAngle={4}
                 dataKey="value"
               >
@@ -288,13 +288,21 @@ export default function Overview() {
                   <Cell key={`cell-${index}`} fill={entry.color} strokeWidth={0} />
                 ))}
               </Pie>
-              <Legend
-                formatter={(value) => (
-                  <span style={{ color: "#A3A3A3", fontSize: 11 }}>{value}</span>
-                )}
-              />
-            </PieChart>
-          </ResponsiveContainer>
+              </PieChart>
+            </ResponsiveContainer>
+            <div className="mt-2 grid grid-cols-2 gap-x-3 gap-y-2">
+              {incomeBreakdown.map((entry) => (
+                <div key={entry.name} className="flex min-w-0 items-center gap-2">
+                  <span
+                    className="h-2.5 w-2.5 shrink-0 rounded-full"
+                    style={{ backgroundColor: entry.color }}
+                  />
+                  <span className="truncate text-[11px] text-[#A3A3A3]">{entry.name}</span>
+                  <span className="ml-auto text-[11px] font-semibold text-white">{entry.value}%</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </SectionCard>
       </div>
 

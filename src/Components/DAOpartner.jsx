@@ -168,7 +168,7 @@ export default function DaoEconomicsSection() {
     <section
       id="dao-protocol"
       aria-label="DAO partner program, token economics and rank incentives"
-      className="overflow-x-hidden px-6 py-3 mt-6 w-full font-[ bg-black'Inter'] text-white sm:py-16 lg:py-10 lg:px-10"
+      className="overflow-x-hidden px-6 py-3 mt-6 w-full font-[ bg-black'Inter'] text-white sm:py-8 lg:py-10 lg:px-10"
     >
       <div className="flex flex-col gap-14 mx-auto w-full max-w-[1600px]  lg:gap-10">
         {/* A. DAO Partner Program */}

@@ -86,7 +86,7 @@ function ProcessCard({ number, title, description }) {
 
 export default function DSESection() {
   return (
-    <section id="dse" className="font-chakra-petch  overflow-hidden bg-black px-6 py-8 text-white sm:px-10 sm:py-10 lg:px-10 lg:py-12">
+    <section id="dse" className="font-chakra-petch  overflow-hidden bg-black px-6 py-8 text-white sm:px-6 sm:py-10 lg:px-10 lg:py-12">
       <div className="mx-auto max-w-[1600px]">
         {/* Hero section */}
         <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-8 lg:gap-14">
@@ -123,11 +123,15 @@ export default function DSESection() {
           </div>
 
           {/* Right: DSE illustration */}
-          <div className="flex min-w-0 items-center justify-center">
+          <div className="relative flex min-w-0 items-center justify-center">
+            <span
+              aria-hidden="true"
+              className="absolute bottom-[2%] left-1/2 h-20 w-[78%] -translate-x-1/2 rounded-full bg-[#FFB01B]/45 blur-3xl"
+            />
             <img
               src={dseImage}
               alt="Dynamic Stability Engine illustration"
-              className="h-auto w-full max-w-[540px] object-contain drop-shadow-[0_0_25px_rgba(231,173,56,0.12)]"
+              className="relative h-auto w-full max-w-[540px] object-contain drop-shadow-[0_0_25px_rgba(231,173,56,0.12)]"
             />
           </div>
         </div>

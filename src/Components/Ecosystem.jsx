@@ -6,35 +6,35 @@ import { StaggerGroup, StaggerItem } from "./Motion";
 const ecosystemItems = [
   {
     title: "Liquidity\nReserve",
-    description: "A foundation for organizing liquidity resources across the Hana ecosystem.",
+    description: "Adaptive economic monitoring and protocol responses",
   },
   {
     title: "Proof of\nReserve",
-    description: "A proposed way to make reserve information easier to review and understand.",
+    description: "Designated reserve transparency. ",
   },
   {
-    title: "DAO Partner\nProgram",
-    description: "A framework for collaborating with community-led organizations and partners.",
+    title: "HANA DAO \nProtocol",
+    description: "Community participation and governance.",
   },
   {
-    title: "Dynamic\nStability Engine",
-    description: "A design concept focused on supporting stability as ecosystem conditions change.",
+    title: "Liquidity &\nTreasury",
+    description: "Resource management and liquidity infrastructure.",
   },
   {
     title: "Proof of\nBur",
-    description: "A mechanism concept for making token burns more visible to the community.",
+    description: "Verifiable token-supply reduction.",
   },
   {
-    title: "Hana\nStaking",
-    description: "A staking experience designed to connect participants with the Hana network.",
+    title: "Hana\nWallet",
+    description: "Planned digital-asset management and ecosystem access.",
   },
   {
-    title: "Locked\nGrowth",
-    description: "A structured approach to long-term growth through time-based token commitments.",
+    title: "Blockchain\nfrastructure",
+    description: "Smart contracts and verifiable transactions.",
   },
   {
-    title: "Treasury &\nGovernance",
-    description: "Tools for transparent treasury coordination and community participation.",
+    title: "Gaming &\nEcosystem",
+    description: "Planned blockchain-enabled gaming and token utility.",
   },
 ];
 
@@ -100,7 +100,7 @@ export default function Ecosystem() {
                   className="absolute left-1/2 top-[-20px] z-20 h-auto aspect-[2/1] w-[160px] max-w-[54%] -translate-x-1/2 rounded-b-full bg-[#DFA52E] shadow-[0px_0px_6px_0px_#00000040]"
                 />
 
-                <h2 className="unbounded relative z-30 mb-3 whitespace-pre-line text-[23px] font-semibold leading-[1.3] tracking-[-0.45px] text-[#100D18] sm:text-[20px] lg:text-[20px] xl:text-[23px]">
+                <h2 className="unbounded relative z-30 mt-6 mb-3 whitespace-pre-line text-[23px] font-semibold leading-[1.3] tracking-[-0.45px] text-[#100D18] sm:text-[20px] lg:text-[20px] xl:text-[23px]">
                   {item.title}
                 </h2>
 
@@ -162,7 +162,11 @@ export default function Ecosystem() {
                 <StaggerGroup className="mt-8 grid grid-cols-1 gap-8 sm:mt-10 md:grid-cols-2 md:gap-7 lg:mt-[80px] lg:gap-7">
         
                   {/* Vision */}
-                  <StaggerItem className="gold-gradient-top-border pt-4" >
+                  <StaggerItem
+                    whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                    whileTap={{ scale: 0.99 }}
+                    className="gold-gradient-top-border pt-4"
+                  >
                     {/* <p className="gold-gradient-text text-[14px] font-medium uppercase">
                    HANA Gaming
                     </p>
@@ -182,7 +186,11 @@ once finalized by DAO Members.
                   </StaggerItem>
         
                   {/* Mission */}
-                  <StaggerItem className="gold-gradient-top-border pt-4">
+                  <StaggerItem
+                    whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                    whileTap={{ scale: 0.99 }}
+                    className="gold-gradient-top-border pt-4"
+                  >
                     {/* <p className="gold-gradient-text text-[14px] font-medium uppercase">
                       02 / MISSION
                     </p> */}

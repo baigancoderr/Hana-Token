@@ -72,7 +72,7 @@ export default function Team() {
                                                                                                     
                 <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/60" />
 
-                <h3 className="absolute  bottom-10 left-1/2 z-10 w-[60%] -translate-x-1/2 bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text text-center text-[14px] font-medium leading-[1.5] text-transparent lg:text-[14px]">
+                <h3 className="absolute  bottom-10 left-1/2 z-10 w-[60%] -translate-x-1/2 bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text text-center text-[14px] font-bold leading-[1.5] text-transparent lg:text-[14px]">
                   {member.name}
                 </h3>
               </StaggerItem>
@@ -96,7 +96,7 @@ export default function Team() {
 
                 <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/25 to-black/65" />
 
-                <h3 className="absolute left-1/2 top-1/2 z-10 w-[90%] -translate-x-1/2 -translate-y-1/2 bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text text-center text-xs font-medium leading-relaxed text-transparent">
+                <h3 className="absolute left-1/2 top-1/2 z-10 w-[90%] -translate-x-1/2 -translate-y-1/2 bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text text-center text-xs font-bold leading-relaxed text-transparent">
                   {member.name}
                 </h3>
               </StaggerItem>

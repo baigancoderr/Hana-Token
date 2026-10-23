@@ -24,14 +24,14 @@ const features = [
 export default function HanaProtocol() {
  
 return (
-  <section id="how-it-works" className="relative overflow-hidden bg-black px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
+  <section id="how-it-works" className="relative overflow-hidden bg-black px-4 py-6 sm:px-6 lg:px-8 lg:py-12">
     {/* Background glow */}
  
 
     <div className="relative mx-auto max-w-[1600px]">
       {/* Heading */}
       <h2
-        className="mb-6 md:mb-10 unbounded text-left text-[25px] font-bold tracking-[-0.6px] md:text-center md:text-[40px]"
+        className="mb-6 md:mb-10 unbounded leading-[1.2] text-left text-[25px] font-bold tracking-[-0.6px] md:text-center md:text-[40px]"
         style={{
           background: "linear-gradient(90deg, #F8E096 0%, #FFB01B 100%)",
           WebkitBackgroundClip: "text",

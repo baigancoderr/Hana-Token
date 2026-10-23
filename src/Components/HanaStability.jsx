@@ -48,14 +48,14 @@ export default function HanaStability() {
 
         {/* TOP HEADING */}
         <div className="mb-8 flex items-center gap-5 sm:gap-8">
-          <h2 className="unbounded min-w-0 text-[18px] font-bold leading-[1.3] sm:text-2xl lg:text-[28px]">
+          <h2 className="unbounded min-w-0 text-[18px] font-bold leading-[1.3] md:text-[30px] lg:text-[40px]">
             <span className="text-white">The </span>
             <span className="inline-block bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text leading-[1.3] text-transparent">
               HANA Stability Architecture
             </span>
           </h2>
 
-          <div className="relative hidden h-[2px] flex-1 sm:block">
+          <div className="relative ml-auto hidden h-[2px] w-20 flex-none sm:block lg:w-36 xl:w-66">
             <div
               className="absolute inset-0"
               style={{
