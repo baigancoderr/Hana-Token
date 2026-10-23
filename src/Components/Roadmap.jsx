@@ -215,12 +215,14 @@ export default function Roadmap() {
                 key={stage.number}
                 as="div"
                 className="relative mt-6 w-full shrink-0 snap-center px-1"
+                whileHover={{ y: -5, scale: 1.01 }}
+                transition={{ type: "spring", stiffness: 280, damping: 24 }}
               >
                 <div
                   aria-hidden="true"
                   className="absolute left-1/2 top-[-15px] z-0 h-[25px] w-[180px] max-w-[75%] -translate-x-1/2 rounded-t-[3px] bg-gradient-to-r from-[#FFB01B] to-[#F8E096] shadow-[0_0_6px_rgba(0,0,0,0.25)]"
                 />
-                <article className="relative z-10 min-h-[300px] overflow-hidden rounded-[9px] border border-[#E5E5E5] bg-white px-5 pb-7 pt-[66px] text-center shadow-[0_4px_4px_rgba(0,0,0,0.25),inset_0_0_6px_rgba(0,0,0,0.25)]">
+                <article className="relative z-10 min-h-[300px] overflow-hidden rounded-[9px] border border-[#E5E5E5] bg-white px-5 pb-7 pt-[66px] text-center shadow-[0_4px_4px_rgba(0,0,0,0.25),inset_0_0_6px_rgba(0,0,0,0.25)] transition-shadow duration-300 hover:shadow-[0_12px_30px_rgba(231,173,56,0.25),inset_0_0_6px_rgba(0,0,0,0.25)]">
                   <div
                     aria-hidden="true"
                     className="absolute left-1/2 top-[-20px] z-20 aspect-[2/1] w-[150px] max-w-[54%] -translate-x-1/2 rounded-b-full bg-[#DFA52E] shadow-[0_0_6px_rgba(0,0,0,0.25)]"
@@ -316,7 +318,9 @@ export default function Roadmap() {
               <StaggerItem
                 as="article"
                 key={stage.number}
-                className="relative grid grid-cols-[84px_minmax(0,1fr)] gap-x-3 pt-4 sm:grid-cols-[94px_minmax(0,1fr)] md:sticky md:top-[10px] md:ml-[calc(5.2%+14px)] md:grid-cols-[108px_minmax(0,1fr)] md:gap-x-3 md:bg-[#050505]/95 md:pt-[clamp(17px,2vw,29px)] md:shadow-[0_-12px_24px_#00000066]"
+                className="group relative grid grid-cols-[84px_minmax(0,1fr)] gap-x-3 pt-4 sm:grid-cols-[94px_minmax(0,1fr)] md:sticky md:top-[10px] md:ml-[calc(5.2%+14px)] md:grid-cols-[108px_minmax(0,1fr)] md:gap-x-3 md:bg-[#050505]/95 md:pt-[clamp(17px,2vw,29px)] md:shadow-[0_-12px_24px_#00000066]"
+                whileHover={{ x: 4 }}
+                transition={{ type: "spring", stiffness: 260, damping: 24 }}
                 style={{
                   zIndex: index + 1,
                 }}
@@ -365,11 +369,11 @@ export default function Roadmap() {
 
                 {/* Stage details */}
                 <div className="min-w-0 max-w-[85%] border-b border-transparent pb-4 [border-image-source:linear-gradient(90deg,#8F5B12_0%,#DFA52E_25%,#FFF1A8_48%,#E7AD38_68%,#9D6415_100%)] [border-image-slice:1] md:pb-[clamp(17px,2vw,29px)]">
-                  <h2 className="text-[16px] unbounded font-bold leading-tight tracking-[-0.035em] text-[#e8f0fb]  md:text-[18px] lg:text-[24px]">
+                  <h2 className="text-[16px] unbounded font-bold leading-tight tracking-[-0.035em] text-[#e8f0fb] transition-colors duration-300 group-hover:text-[#FFD36A] md:text-[18px] lg:text-[24px]">
                     {stage.title}
                   </h2>
 
-                  <ul className="mt-2 max-w-[520px] chakra-petch space-y-1 text-[14px] leading-[1.5]  sm:text-[15px] lg:text-[18px]">
+                  <ul className="mt-2 max-w-[520px] chakra-petch space-y-1 text-[14px] leading-[1.5] sm:text-[15px] lg:text-[18px]">
                     {stage.description.map((item) => (
                       <li key={item}>• {item}</li>
                     ))}

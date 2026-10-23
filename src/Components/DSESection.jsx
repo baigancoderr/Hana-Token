@@ -1,6 +1,7 @@
 
 import React from "react";
 import dseImage from "../assets/DSE/DSE.png";
+import { Reveal, StaggerGroup, StaggerItem } from "./Motion";
 
 const steps = [
   {
@@ -53,7 +54,7 @@ function ProcessCard({ number, title, description }) {
       </div>
 
       {/* Title */}
-      <h3 className="unbounded mb-3 bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text text-lg font-bold text-transparent sm:text-xl">
+      <h3 className="unbounded mb-3 bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text text-lg font-bold text-transparent transition-[filter,transform] duration-300 group-hover:translate-x-1 group-hover:drop-shadow-[0_0_8px_rgba(248,224,150,0.35)] sm:text-xl">
         {title}
       </h3>
 
@@ -86,13 +87,13 @@ function ProcessCard({ number, title, description }) {
 
 export default function DSESection() {
   return (
-    <section id="dse" className="font-chakra-petch  overflow-hidden bg-black px-6 py-8 text-white sm:px-6 sm:py-10 lg:px-10 lg:py-12">
+    <section id="dse" className="font-chakra-petch  overflow-hidden bg-black px-4 py-8 text-white sm:px-2 sm:py-10 lg:px-10 lg:py-12">
       <div className="mx-auto max-w-[1600px]">
         {/* Hero section */}
         <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-8 lg:gap-14">
           {/* Left: heading and description */}
           <div className="min-w-0">
-            <h1 className="unbounded text-[25px] font-bold leading-[1.08] tracking-tight md:text-[40px] xl:text-[55px]">
+            <Reveal as="h1" className="unbounded text-[25px] font-bold leading-[1.08] tracking-tight md:text-[40px] xl:text-[55px]">
               <span className="block text-[#F3F3F3]">
                 Dynamic Stability
               </span>
@@ -100,9 +101,9 @@ export default function DSESection() {
               <span className="mt-1 block bg-[linear-gradient(90deg,#8F5B12_0%,#DFA52E_25%,#FFF1A8_48%,#E7AD38_68%,#9D6415_100%)] bg-clip-text text-transparent">
                 Engine (DSE)
               </span>
-            </h1>
+            </Reveal>
 
-            <div className="relative mt-8 max-w-[650px] px-4 py-4 sm:px-5 sm:py-5">
+            <Reveal className="relative mt-8 max-w-[650px] px-4 py-4 sm:px-5 sm:py-5">
               {/* Top-left corner */}
               <span className="absolute left-0 top-0 h-5 w-5 rounded-tl border-l-2 border-t-2 border-[#DFA52E]" />
 
@@ -119,37 +120,43 @@ export default function DSESection() {
               <span className="absolute bottom-0 right-0 h-5 w-5 rounded-br border-b-2 border-r-2 border-[#DFA52E]" />
 
               <span className="absolute bottom-0 left-5 h-px w-10 bg-[#DFA52E]" />
-            </div>
+            </Reveal>
           </div>
 
           {/* Right: DSE illustration */}
-          <div className="relative flex min-w-0 items-center justify-center">
+          <Reveal className="relative flex min-w-0 items-center justify-center">
             <span
               aria-hidden="true"
-              className="absolute bottom-[2%] left-1/2 h-20 w-[78%] -translate-x-1/2 rounded-full bg-[#FFB01B]/45 blur-3xl"
+              className="absolute bottom-[2%] left-1/2 h-20 w-[78%] -translate-x-1/2 rounded-full bg-[#FFB01B]/45 blur-3xl transition-all duration-700"
             />
             <img
               src={dseImage}
               alt="Dynamic Stability Engine illustration"
-              className="relative h-auto w-full max-w-[540px] object-contain drop-shadow-[0_0_25px_rgba(231,173,56,0.12)]"
+              className="group relative h-auto w-full max-w-[540px] object-contain drop-shadow-[0_0_25px_rgba(231,173,56,0.12)] transition-transform duration-700 ease-out hover:scale-[1.03]"
             />
-          </div>
+          </Reveal>
         </div>
 
         {/* Process section */}
         <div className="mt-9 sm:mt-12 lg:mt-10">
-          <h2 className="unbounded text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">
+          <Reveal as="h2" className="unbounded text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">
             <span className="text-white">How </span>
             <span className="bg-[linear-gradient(90deg,#8F5B12_0%,#DFA52E_25%,#FFF1A8_48%,#E7AD38_68%,#9D6415_100%)] bg-clip-text text-transparent">
               DSE Works
             </span>
-          </h2>
+          </Reveal>
 
-          <div className="mt-5  grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 lg:gap-10 xl:gap-18">
+          <StaggerGroup className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 lg:gap-10 xl:gap-18">
             {steps.map((step) => (
-              <ProcessCard key={step.number} {...step} />
+              <StaggerItem
+                key={step.number}
+                whileHover={{ y: -5 }}
+                transition={{ type: "spring", stiffness: 280, damping: 22 }}
+              >
+                <ProcessCard {...step} />
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </div>
       </div>
     </section>

@@ -38,6 +38,7 @@ import DSESection from './Components/DSESection'
 import HanaStability from './Components/HanaStability'
 import DashboardAccessGate from './dashboard/components/DashboardAccessGate'
 import AuthPage from './auth/AuthPage'
+import TokenEconomics from './Components/TokenEconomics'
 
 // Landing page
 function LandingPage() {
@@ -52,6 +53,7 @@ function LandingPage() {
         <SectionReveal><DSESection /></SectionReveal>
         <SectionReveal><HanaStability /></SectionReveal>
         <SectionReveal><DAOpartner /></SectionReveal>
+        <SectionReveal><TokenEconomics /></SectionReveal>
         <SectionReveal><Token /></SectionReveal>
         <SectionReveal><Tokonomics /></SectionReveal>
         <SectionReveal><Ecosystem /></SectionReveal>

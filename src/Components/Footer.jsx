@@ -1,7 +1,11 @@
 
 import React from "react";
+import { motion } from "framer-motion";
 import logo from "../assets/logo.png";
 import { Reveal, StaggerGroup, StaggerItem } from "./Motion";
+
+const MotionDiv = motion.div;
+
 const Footer = () => {
   const navLinks = [
     { name: "About Us", href: "#about" },
@@ -16,18 +20,31 @@ const Footer = () => {
       <div className="mx-auto max-w-[1920px] px-5 sm:px-8 lg:px-[40px]">
 
         {/* Top Border */}
-        <Reveal className="h-px w-full bg-[#493052]" />
+        <Reveal className="h-px w-full overflow-hidden bg-[#493052]">
+          <MotionDiv
+            className="h-full w-1/3 bg-gradient-to-r from-transparent via-[#FFD36A] to-transparent"
+            animate={{ x: ["-100%", "400%"] }}
+            transition={{ duration: 4, ease: "linear", repeat: Infinity, repeatDelay: 1.5 }}
+          />
+        </Reveal>
 
         {/* Main Footer */}
         <StaggerGroup className="flex flex-col gap-8 py-10 sm:py-12 lg:flex-row lg:items-start lg:justify-between lg:gap-10 lg:pb-[48px] lg:pt-[76px]">
 
           {/* Logo & Tagline */}
           <StaggerGroup className="flex flex-col items-start">
-            <StaggerItem as="a" href="/" aria-label="Hana Home">
+            <StaggerItem
+              as="a"
+              href="/"
+              aria-label="Hana Home"
+              whileHover={{ scale: 1.06, rotate: -2 }}
+              transition={{ type: "spring", stiffness: 300, damping: 18 }}
+              className="origin-left"
+            >
               <img
                 src={logo}
                 alt="Hana Logo"
-                className="h-auto w-[145px] object-contain sm:w-[155px]"
+                className="h-auto w-[145px] object-contain drop-shadow-[0_0_0_rgba(255,211,106,0)] transition-[filter] duration-300 hover:drop-shadow-[0_0_14px_rgba(255,211,106,0.35)] sm:w-[155px]"
               />
             </StaggerItem>
 
@@ -51,9 +68,12 @@ const Footer = () => {
                 as="a"
                 key={link.name}
                 href={link.href}
-                className="text-[15px] font-normal text-[#E0E7F0] transition-colors duration-200 hover:text-[#E5C45B] sm:text-[17px]"
+                whileHover={{ y: -3 }}
+                transition={{ type: "spring", stiffness: 320, damping: 20 }}
+                className="group relative text-[15px] font-normal text-[#E0E7F0] transition-colors duration-200 hover:text-[#E5C45B] sm:text-[17px]"
               >
                 {link.name}
+                <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gradient-to-r from-[#F8E096] to-[#FFB01B] transition-transform duration-300 group-hover:scale-x-100" />
               </StaggerItem>
             ))}                                     
           </StaggerGroup>
@@ -77,17 +97,21 @@ const Footer = () => {
           <StaggerItem
             as="a"
             href="/terms"
-            className="text-[14px] text-[#E0E7F0] transition-colors hover:text-[#E5C45B] sm:text-[15px]"
+            whileHover={{ y: -2 }}
+            className="group relative text-[14px] text-[#E0E7F0] transition-colors hover:text-[#E5C45B] sm:text-[15px]"
           >
             Terms
+            <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gradient-to-r from-[#F8E096] to-[#FFB01B] transition-transform duration-300 group-hover:scale-x-100" />
           </StaggerItem>
 
           <StaggerItem
             as="a"
             href="/privacy"
-            className="text-[14px] text-[#E0E7F0] transition-colors hover:text-[#E5C45B] sm:text-[15px]"
+            whileHover={{ y: -2 }}
+            className="group relative text-[14px] text-[#E0E7F0] transition-colors hover:text-[#E5C45B] sm:text-[15px]"
           >
             Privacy
+            <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gradient-to-r from-[#F8E096] to-[#FFB01B] transition-transform duration-300 group-hover:scale-x-100" />
           </StaggerItem>
         </StaggerGroup>
       </div>

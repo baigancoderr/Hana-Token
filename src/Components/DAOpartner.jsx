@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Reveal, StaggerGroup, StaggerItem } from "./Motion";
 
 /* Fonts: add once to index.html <head> or the top of index.css:
    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Unbounded:wght@500;600;700&display=swap");
@@ -174,24 +175,32 @@ export default function DaoEconomicsSection() {
         {/* A. DAO Partner Program */}
         <div className="grid items-start gap-7 md:gap-12 lg:grid-cols-2">
           <div className="min-w-0">
-            <Heading>
+            <Reveal>
+              <Heading>
              <span className="text-white">DAO Partner</span>{" "}
 <span className="text-transparent bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text">
   Program
 </span>
-            </Heading>
+              </Heading>
+            </Reveal>
 
-            <div className="relative mt-8 px-5 py-6 max-w-[520px] sm:px-6">
+            <Reveal className="relative mt-8 px-5 py-6 max-w-[520px] sm:px-6">
               <p className="break-words text-sm leading-relaxed text-[#A9A0B8] sm:text-base">
                 5% of eligible deposits goes to the DAO Pool, distributed by qualified shares.
               </p>
               <span aria-hidden="true" className="block mt-5 h-px w-10 bg-[#FFC542]" />
               <Corners className="top-0 left-0" bottom="bottom-0 right-0" />
-            </div>
+            </Reveal>
 
-            <ul className="grid grid-cols-1 gap-3 mt-8 min-[480px]:grid-cols-3">
+            <StaggerGroup as="ul" className="grid grid-cols-1 gap-3 mt-8 min-[480px]:grid-cols-3">
               {BADGES.map(({ text, glow }) => (
-                <li key={text} className="min-w-0">
+                <StaggerItem
+                  as="li"
+                  key={text}
+                  className="min-w-0"
+                  whileHover={{ y: -5, scale: 1.03 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 22 }}
+                >
                   <Hex glow={glow}>
                     <span
                       className={`break-words text-xs leading-snug text-white ${
@@ -201,99 +210,39 @@ export default function DaoEconomicsSection() {
                       {text}
                     </span>
                   </Hex>
-                </li>
+                </StaggerItem>
               ))}
-            </ul>
+            </StaggerGroup>
           </div>
 
-          <div className="grid gap-5 gap-6 min-w-0 sm:grid-cols-2 lg:pt-4">
-            <OptionCard title="Option 1">
+          <StaggerGroup className="grid gap-5 gap-6 min-w-0 sm:grid-cols-2 lg:pt-4">
+            <StaggerItem
+              whileHover={{ y: -6, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 280, damping: 22 }}
+            >
+              <OptionCard title="Option 1">
               <p className="break-words text-xs text-[#A9A0B8] sm:text-sm">$5,000 ID × 300 members</p>
               <p className="mt-2 font-['Unbounded'] text-base font-semibold text-transparent bg-[linear-gradient(90deg,#8F5B12_0%,#DFA52E_25%,#FFF1A8_48%,#E7AD38_68%,#9D6415_100%)] bg-clip-text">
   $1.5M capacity
 </p>
-            </OptionCard>
-            <OptionCard title="Option 2" glow className="sm:mt-10">
+              </OptionCard>
+            </StaggerItem>
+            <StaggerItem
+              whileHover={{ y: -6, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 280, damping: 22 }}
+            >
+              <OptionCard title="Option 2" glow className="sm:mt-10">
               <p className="break-words text-sm leading-relaxed text-white sm:text-base">
                 Refer 5 DAO members and maintain a $1,000 ID.
               </p>
-            </OptionCard>
-          </div>
+              </OptionCard>
+            </StaggerItem>
+          </StaggerGroup>
         </div>
 
         {/* B + C. Token Economics (left) and Rank Incentives (right) */}
-        <div className="grid items-start gap-6 md:gap-10 lg:grid-cols-2">
-          <section aria-labelledby="economics-heading" className="min-w-0 lg:pt-6">
-            <Heading className="w-full">
-              <span className="text-white">Token</span>{" "}
-<span className="text-transparent bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text">
-  Economics
-</span>
-<span className="text-transparent bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text">
-  &amp; Stabilization
-</span>
-            </Heading>
-
-            <dl className="mt-8 space-y-4 space-y-5 sm:mt-10">
-              {ECONOMICS.map((row, index) => (
-                <EconomicsRow
-                  key={row.label}
-                  {...row}
-                  glow={activeEconomicsRow === index}
-                />
-              ))}
-            </dl>
-
-            <div className={`grid grid-cols-1 items-start gap-3 gap-4 mt-5 rounded-lg border px-4 py-4 px-6 transition-all duration-700 md:grid-cols-[7rem_1fr] md:items-center ${
-              activeEconomicsRow === ECONOMICS.length
-                ? "border-[#FFC542]/70 bg-[#1C170C] shadow-[0_0_16px_rgba(255,197,66,0.15)]"
-                : "border-[#FFC542]/60 bg-black"
-            }`}>
-              <p className="font-['Unbounded'] text-sm font-semibold text-transparent bg-[linear-gradient(90deg,#E7AD38_0%,#FFD98C_100%)] bg-clip-text">
-  Note
-</p>
-              <p className="min-w-0 break-words text-sm leading-relaxed text-white">
-                Direct PancakeSwap purchases are not intended under the proposed package model.
-              </p>
-            </div>
-          </section>
-
-          <section
-            aria-labelledby="rank-heading"
-            className="p-5 min-w-0 bg-gradient-to-b from-[#191919] to-black rounded-[10px] border-[#FFC542]/70 lg:rounded-[2.25rem] border sm:p-8"
-          >
-            <Heading>
-              <span id="rank-heading">
-  <span className="text-white">Rank</span>
-  <br />
-  <span className="text-transparent bg-[linear-gradient(90deg,#F8E096_0%,#FFB01B_100%)] bg-clip-text">
-    Incentives
-  </span>
-</span>
-            </Heading>
-
-            <div className="grid grid-cols-1 gap-3 mt-8 min-[360px]:grid-cols-2 sm:gap-4">
-              {TILES.map((tile, index) => (
-                <IncentiveTile
-                  key={tile.label}
-                  {...tile}
-                  glow={activeTile === index}
-                />
-              ))}
-            </div>
-
-            <dl className="mt-8 text-sm space-y-4 sm:mt-10">
-              {RANK_NOTES.map(({ label, text }) => (
-                <div key={label} className="grid gap-1 gap-4 sm:grid-cols-[9rem_1fr]">
-                 <dt className="font-['Unbounded'] text-xs font-semibold text-transparent bg-[linear-gradient(90deg,#E7AD38_0%,#FFD98C_100%)] bg-clip-text sm:pt-0.5">
-  {label}
-</dt>
-                  <dd className="min-w-0 break-words leading-relaxed text-white/90">{text}</dd>
-                </div>
-              ))}
-            </dl>
-          </section>
-        </div>
+     
+     
       </div>
     </section>
   );

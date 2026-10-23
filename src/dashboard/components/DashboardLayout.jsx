@@ -106,6 +106,27 @@ export default function DashboardLayout() {
               lightMode={false}
               opacity={0.62}
             />
+            <SideRays
+              rayColor1="#FFC46B"
+              rayColor2="#96c8ff"
+              origin="top-left"
+              speed={2.5}
+              intensity={2}
+              spread={3}
+              density={5}
+              followMouse
+              blend={0.6}
+              sharpness={0.5}
+              tilt={0}
+              falloff={1.6}
+              glow={1}
+              saturation={1}
+              dust={0}
+              mouseInfluence={0.5}
+              intro
+              lightMode={false}
+              opacity={0.62}
+            />
             <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/30" />
           </div>
 
